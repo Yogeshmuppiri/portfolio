@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How AI Works | Yogesh Muppiri</title>
+    <link rel="icon" type="image/png" href="mylogo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans antialiased relative selection:bg-blue-500 selection:text-white">
+
+    <div id="tsparticles" class="fixed inset-0 z-0 pointer-events-none"></div>
+
+    <div class="relative z-10">
+        <nav aria-label="Primary" class="backdrop-blur-sm bg-gray-900/50 sticky top-0 border-b border-gray-800 z-50">
+            <div class="p-4 sm:p-6 flex justify-between items-center max-w-6xl mx-auto">
+            <a href="index.html" class="group flex items-center text-gray-300 hover:text-white transition text-sm sm:text-base font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transform group-hover:-translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to Portfolio
+            </a>
+            <a href="index.html" aria-label="Go to homepage">
+                <img src="mylogo.png" alt="Yogesh logo" class="h-9 sm:h-10 w-auto object-contain" loading="lazy">
+            </a>
+            </div>
+        </nav>
+
+        <header class="py-16 px-4 max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-white drop-shadow-md">AI Fundamentals</h1>
+            <p class="text-xl text-blue-400 font-medium mb-8">A technical breakdown of the engines driving modern intelligence.</p>
+        </header>
+
+        <main class="max-w-6xl mx-auto px-4 pb-24 space-y-24">
+            
+            <section class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="w-full lg:w-1/2 space-y-4">
+                    <h2 class="text-3xl font-bold text-white border-b border-gray-700 pb-2 mb-6">The Core of AI</h2>
+                    <ul class="space-y-4 text-gray-300 text-lg">
+                        <li><strong class="text-blue-300">Artificial Intelligence:</strong> A transformative technology that enables machines to perform human-like problem-solving tasks.</li>
+                        <li><strong class="text-blue-300">Machine Learning:</strong> A technique leveraging data and algorithms to enable AI systems to learn and improve autonomously over time.</li>
+                        <li><strong class="text-blue-300">Deep Learning:</strong> A method that teaches computers to process information in a way inspired by the neural networks of the human brain.</li>
+                        <li><strong class="text-blue-300">Generative AI:</strong> AI capable of creating net-new content and ideas, including complex conversation, stories, images, video, and music.</li>
+                    </ul>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <img src="Img_1.png" alt="Core AI Diagram" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2" loading="lazy">
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row-reverse items-center gap-12">
+                <div class="w-full lg:w-1/2 space-y-4">
+                    <h2 class="text-3xl font-bold text-white border-b border-gray-700 pb-2 mb-6">Traditional ML models & Foundation Models</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Generative AI is powered by <strong class="text-white">Foundation Models</strong>. These are massive machine learning models trained on a broad spectrum of generalized, unlabeled data. 
+                        Because of this vast pre-training, they are capable of performing a wide variety of general tasks, such as understanding language, generating text and images, and conducting natural conversations, without needing to be built from scratch for every specific use case.
+                    </p>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <img src="Img_2.png" alt="Traditional vs Foundational Model" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2" loading="lazy">
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="w-full lg:w-1/2 space-y-4">
+                    <h2 class="text-3xl font-bold text-white border-b border-gray-700 pb-2 mb-6">Large Language Models (LLMs)</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                        <strong class="text-blue-300">How they fit together:</strong> While a Foundation Model is the overarching architecture capable of multi-tasking, an LLM is a specific type of Foundation Model heavily optimized for text and language.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                        LLMs are very large Deep Learning models pre-trained on vast datasets. To reason and understand context, they rely on a mechanism called <strong class="text-white">Self-Attention</strong> alongside <strong class="text-white">Positional Encoding</strong> to track the order of words.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
+                        Large Language Models are built using a particular type of neural network architecture called the <strong class="text-white">Transformer</strong>. This architecture allows the model to process different parts of the input simultaneously.
+                        </p>
+                    <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
+                        <h4 class="text-sm uppercase text-gray-400 font-bold mb-2">Example LLM Tasks:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-900/40 text-blue-300 text-sm rounded-full">Text Generation</span>
+                            <span class="px-3 py-1 bg-blue-900/40 text-blue-300 text-sm rounded-full">Chatbots</span>
+                            <span class="px-3 py-1 bg-blue-900/40 text-blue-300 text-sm rounded-full">Classification</span>
+                            <span class="px-3 py-1 bg-blue-900/40 text-blue-300 text-sm rounded-full">Translation</span>
+                            <span class="px-3 py-1 bg-blue-900/40 text-blue-300 text-sm rounded-full">Summarization</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <img src="Img_3.png" alt="LLM Self Attention" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2" loading="lazy">
+                </div>
+            </section>
+
+            <section class="bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
+                <h2 class="text-2xl font-bold text-white mb-4">Beyond Text: Vision & Omnimodal Models</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-300 text-lg">
+                    <div>
+                        <strong class="text-blue-300 block mb-2">Vision-Language Foundation Models:</strong> 
+                        These accept prompts consisting of text and/or images as inputs, and can return an image as a response.
+                    </div>
+                    <div>
+                        <strong class="text-blue-300 block mb-2">Multimodal & Omnimodal Models:</strong> 
+                        These support seamlessly transitioning between various inputs and outputs (text, audio, image, video). As these evolve, the term "LLM" is increasingly used interchangeably with Multimodal Foundation Models.
+                    </div>
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row-reverse items-start gap-12 pt-8">
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <h2 class="text-3xl font-bold text-white border-b border-gray-700 pb-2">Training & Embeddings</h2>
+                    
+                    <div class="space-y-4 text-gray-300 text-lg leading-relaxed">
+                        <p><strong class="text-white">Training (Building Knowledge):</strong> A machine learning algorithm learns the relationship between features and labels. LLMs ingest millions of text documents and learn by trying to predict the most likely next word. The model adjusts its internal weights until its predictions closely match reality.</p>
+                        
+                        <p>However, computers do not understand words, they understand numbers. To process text, we use <strong class="text-blue-300">Embeddings</strong>. We map words into a multidimensional space as vectors of numbers.</p>
+                        
+                        <div class="bg-gray-950 p-4 rounded-lg border border-gray-800 font-mono text-sm text-gray-400">
+                            <span class="text-gray-500"> Text -> Tokens -> Embeddings</span><br><br>
+                            <span class="text-purple-400">Text:</span> "You are rocking!"<br>
+                            <span class="text-emerald-400">Tokens:</span> ["You", "are", "rocking"]<br>
+                            <span class="text-blue-400">Embeddings:</span> "You" -> [0.5, -0.1, 0.9, ..., 7.4]
+                        </div>
+                        
+                        <p>Every token gets a unique embedding. Through training, the model learns spatial relationships. For example, the embeddings for "Paris" and "London" will be clustered close together in this multidimensional space, while "banana" will be mapped far away.</p>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 sticky top-24">
+                    <img src="Img_4.jpeg" alt="Embeddings and Tokens" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2 mb-6" loading="lazy">
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row items-center gap-12 border-t border-gray-800 pt-16">
+                <div class="w-full lg:w-1/2 space-y-4">
+                    <h2 class="text-3xl font-bold text-white border-b border-gray-700 pb-2 mb-6">Post-Training & Inference</h2>
+                    <ul class="space-y-4 text-gray-300 text-lg leading-relaxed">
+                        <li><strong class="text-blue-300">Alignment:</strong> Pre-training creates raw capability. Post-training
+                            refines the model to align with human preferences, expectations, and safety values.</li>
+                        <li><strong class="text-blue-300">Distillation:</strong> A highly advanced technique where knowledge from a massive "Teacher" model is extracted, compressed, and transferred to a smaller, faster "Student" model.</li>
+                        <li><strong class="text-blue-300">Inference (Using the Model):</strong> Once trained, the model generates outputs based on learned patterns. The randomness and focus of these predictions are controlled by tuning parameters like <strong class="text-white">Temperature</strong>, <strong class="text-white">Top-P</strong>, and <strong class="text-white">Top-K</strong>.</li>
+                    </ul>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <img src="Img_6.jpeg" alt="Inference and Prediction" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2" loading="lazy">
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row-reverse items-center gap-12 border-t border-gray-800 pt-16">
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <h2 class="text-3xl font-bold text-white border-b border-gray-700 pb-2">Controlling the AI: Improving Output</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        LLMs are incredibly powerful, but their raw output can sometimes be unpredictable. To rein them in and get highly accurate, formatted responses, engineers use four main approaches: <strong class="text-white">Prompt Engineering, Context Engineering, RAG, and Fine-Tuning.</strong>
+                    </p>
+                    
+                    <div class="bg-gray-900/80 p-6 rounded-xl border border-gray-700">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4">Prompt Engineering</h3>
+                        <p class="text-gray-300 mb-4">The input given to a model to elicit a specific response. It typically consists of two layers:</p>
+                        <ul class="space-y-3 text-gray-300">
+                            <li><strong class="text-white">System Prompt:</strong> The overarching instructions that run in the background, guiding the AI's persona, rules, and overall behavior.</li>
+                            <li><strong class="text-white">User Prompt:</strong> The direct question or instruction the user types into the chat or API.</li>
+                        </ul>
+                        <p class="text-gray-400 text-sm mt-4 italic">Both prompts are combined and sent to the LLM during inference. Using frameworks like CRAFT helps guarantee high-quality, structured inputs.</p>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <img src="Img_7.png" alt="CRAFT Prompt Framework" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2" loading="lazy">
+                </div>
+            </section>
+
+            <section class="pt-8">
+                <h2 class="text-2xl font-bold text-white mb-8 text-center">Prompting Techniques Matrix</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-blue-500/50 transition">
+                        <h3 class="text-lg font-bold text-emerald-400 mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Basic
+                        </h3>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li><strong class="text-white block">Zero-Shot:</strong> Prompting with an instruction but providing zero examples.</li>
+                            <li><strong class="text-white block">Few-Shot:</strong> Providing the instruction alongside a few examples to establish a pattern.</li>
+                            <li><strong class="text-white block">Role-Playing:</strong> Assigning a specific persona or expertise to influence the model's tone and knowledge focus.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-yellow-500/50 transition">
+                        <h3 class="text-lg font-bold text-yellow-400 mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-yellow-400"></span> Intermediate
+                        </h3>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li><strong class="text-white block">Structured Output:</strong> Instructing the AI to return data in strict formats like JSON, XML, or custom schemas.</li>
+                            <li><strong class="text-white block">Chain-of-Thought (CoT):</strong> Forcing the model to break compound tasks into intermediate reasoning steps (e.g., adding "think step-by-step").</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-800 hover:border-red-500/50 transition">
+                        <h3 class="text-lg font-bold text-red-400 mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-red-400"></span> Advanced
+                        </h3>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li><strong class="text-white block">Self-Refine:</strong> The model generates an initial response, reviews its own output against constraints, and iteratively improves it.</li>
+                            <li><strong class="text-white block">ReAct (Reasoning + Acting):</strong> An agentic loop where the model thinks, acts (uses a tool), observes the result, and repeats.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-gradient-to-br from-gray-900 to-gray-950 p-8 rounded-2xl border border-gray-800 mt-16 shadow-lg">
+                <h2 class="text-2xl font-bold text-white mb-6">Context Engineering: Managing the Window</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="space-y-4 text-gray-300 text-lg">
+                        <p><strong class="text-blue-300">Context</strong> is all the input information provided to the model. The <strong class="text-blue-300">Context Window</strong> is the absolute maximum amount of input it can consider at once, strictly measured in tokens.</p>
+                        <p>When a conversation hits this limit, the context window is full. Different systems handle this differently: early information might be permanently dropped, or older messages might be dynamically summarized to save space.</p>
+                    </div>
+                    <div class="space-y-4 text-gray-300 text-lg border-l-2 border-blue-500/30 pl-6">
+                        <h4 class="text-white font-bold mb-2">Why Context Engineering Matters:</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong class="text-white">Finite Context Window:</strong> Every model has a strict token limit for what it can process simultaneously, making it impossible to pass an entire database or document repository in a single prompt.</li>
+                            <li><strong class="text-white">Computational Cost:</strong> Processing massive token counts is expensive and slow.</li>
+                            <li><strong class="text-white">The Trade-off:</strong> Balancing too little context (hallucinations) vs. too much context (the model loses the "needle in the haystack").</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row items-center gap-12 pt-16 border-b border-gray-800 pb-16">
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <h2 class="text-3xl font-bold text-white border-b border-gray-700 pb-2">RAG & Fine-Tuning</h2>
+                    
+                    <div class="space-y-4 text-gray-300 text-lg leading-relaxed">
+                        <h3 class="text-xl font-bold text-blue-400">Retrieval-Augmented Generation (RAG)</h3>
+                        <p>Instead of relying purely on what the model memorized during training, RAG introduces an external knowledge base (usually a <strong class="text-white">Vector Database</strong>).</p>
+                        <p>When a user asks a question, the system first retrieves highly relevant chunks of data from the database. It then injects this data into the prompt alongside the user's question. This allows the model to generate accurate answers based on up-to-date, proprietary data <em class="text-blue-300">without</em> needing expensive retraining.</p>
+                    </div>
+
+                    <div class="bg-gray-800/40 p-5 rounded-lg border border-gray-700 mt-6">
+                        <h3 class="text-lg font-bold text-purple-400 mb-2">Fine-Tuning</h3>
+                        <p class="text-gray-300 text-sm">After a pre-trained model is aligned, it can undergo Fine-Tuning. This involves further training the model on a smaller, highly curated, and specific dataset to deeply alter its behavior, tone, or domain-specific knowledge.</p>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <img src="Img_8.png" alt="RAG Architecture Diagram" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2" loading="lazy">
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row-reverse items-center gap-12 pt-16">
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <h2 class="text-3xl font-bold text-white border-b border-gray-700 pb-2">Evaluating AI Models</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        How do we know the system is actually working as desired? Evaluation is essential to <strong class="text-white">mitigate risk, build trust, establish baselines, and measure performance.</strong> 
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        When building production models, engineers must constantly balance a complex trilemma: <strong class="text-blue-400">Model Quality & Flexibility</strong> vs. <strong class="text-blue-400">Latency (time to generate)</strong> vs. <strong class="text-blue-400">Cost</strong>. Because of this, evaluation requires a spectrum of approaches ranging from purely objective mathematical scoring to highly subjective human review.
+                    </p>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <img src="Img_9.png" alt="Evaluation Spectrum" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2" loading="lazy">
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row items-center gap-12 pt-12">
+                <div class="w-full lg:w-1/2 space-y-4">
+                    <h3 class="text-2xl font-bold text-white mb-4">Quantitative Metrics</h3>
+                    <p class="text-gray-300 text-lg mb-4">
+                        Quantitative metrics provide objective, numerical measurements to evaluate baseline LLM performance.
+                    </p>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><strong class="text-blue-300">Exact Match:</strong> The prediction matches the expected output character-for-character.</li>
+                        <li><strong class="text-blue-300">Accuracy:</strong> The overall proportion of correct predictions.</li>
+                        <li><strong class="text-blue-300">Perplexity:</strong> A measurement of how confidently the model predicts the next word (lower is better).</li>
+                        <li><strong class="text-blue-300">BLEU:</strong> Precision-based text comparison, often used for translation.</li>
+                        <li><strong class="text-blue-300">ROUGE:</strong> Recall-oriented text evaluation, often used for summarization.</li>
+                    </ul>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <img src="Img_10.jpeg" alt="Quantitative Metrics" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2" loading="lazy">
+                </div>
+            </section>
+
+            <section class="pt-16">
+                <h2 class="text-2xl font-bold text-white mb-8 text-center">Advanced Evaluation Methodologies</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="bg-gray-900/60 p-6 rounded-xl border border-gray-700">
+                        <h3 class="text-xl font-bold text-blue-400 mb-3">Benchmark Datasets</h3>
+                        <p class="text-gray-300 text-sm mb-3">High-quality, standardized datasets containing prompts and expected responses. They power leaderboards to rank models.</p>
+                        <div class="bg-red-900/20 border border-red-900/50 p-3 rounded text-sm text-red-200">
+                            <strong>Challenge:</strong> Benchmarks become outdated quickly. Worse, models may inadvertently train on the benchmark data itself, leading to unfair, contaminated comparisons.
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-900/60 p-6 rounded-xl border border-gray-700">
+                        <h3 class="text-xl font-bold text-purple-400 mb-3">LLM as a Judge</h3>
+                        <p class="text-gray-300 text-sm mb-3">Using a superior model (LLM-B) to evaluate the output of another model (LLM-A). This is highly scalable and valuable for subjective tasks like creative writing, or when creating manual ground-truth data is too expensive.</p>
+                    </div>
+
+                    <div class="bg-gray-900/60 p-6 rounded-xl border border-gray-700">
+                        <h3 class="text-xl font-bold text-emerald-400 mb-3">Feedback-Based Evolution</h3>
+                        <p class="text-gray-300 text-sm mb-3">Collecting real-world signals (like thumbs-up/down) through live A/B testing. Automated metrics often miss the nuances of what makes an answer truly successful to an end-user; live feedback bridges this gap.</p>
+                    </div>
+
+                    <div class="bg-gray-900/60 p-6 rounded-xl border border-gray-700">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-3">Human Evaluation</h3>
+                        <p class="text-gray-300 text-sm mb-3">Conducted by domain specialists. It is costly and resource-intensive, but provides the highest quality assessment. Essential for validating critical edge cases and capturing qualitative insights numbers alone miss.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-gray-900/40 p-8 rounded-2xl border border-gray-800 mt-12">
+                <h2 class="text-2xl font-bold text-white mb-6">Evaluating Complex Agents</h2>
+                <p class="text-gray-300 mb-6">Because autonomous agents build upon algorithms and utilize multiple tools, they must be evaluated across three distinct operational levels:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <strong class="text-white block text-lg">System-Level</strong>
+                        <span class="text-gray-400 text-sm">Measures overall operational excellence, pipeline efficiency, and end-to-end task completion times.</span>
+                    </div>
+                    <div class="border-l-4 border-purple-500 pl-4">
+                        <strong class="text-white block text-lg">Task-Level</strong>
+                        <span class="text-gray-400 text-sm">Measures use-case performance, logic accuracy, token usage per task, and total financial cost.</span>
+                    </div>
+                    <div class="border-l-4 border-emerald-500 pl-4">
+                        <strong class="text-white block text-lg">Tool-Level</strong>
+                        <span class="text-gray-400 text-sm">Measures API-level performance, tool call latency, and the error rates of external integrations.</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="flex flex-col lg:flex-row items-center gap-12 pt-16 border-t border-gray-800">
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <h2 class="text-3xl font-bold text-white border-b border-gray-700 pb-2">Responsible AI & Risk Mitigation</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        <strong class="text-blue-400">Responsible AI</strong> is the discipline of designing, developing, and deploying AI technology with the explicit goal of maximizing human benefit while minimizing risks. 
+                    </p>
+                    <p class="text-gray-300">
+                        It spans the entire AI lifecycle through the <strong class="text-white">Design, Build, and Operate</strong> phases. Assessing risk proactively allows engineers to identify, evaluate, and mitigate problems early when they are least costly to fix, ultimately protecting users and maintaining organizational trust.
+                    </p>
+                    <div class="bg-gray-900/80 p-4 rounded-lg border border-gray-700 mt-4">
+                        <h4 class="text-sm uppercase text-gray-400 font-bold mb-3">Core Dimensions of Responsible AI:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded border border-gray-600">Controllability</span>
+                            <span class="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded border border-gray-600">Privacy & Security</span>
+                            <span class="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded border border-gray-600">Safety</span>
+                            <span class="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded border border-gray-600">Fairness</span>
+                            <span class="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded border border-gray-600">Veracity</span>
+                            <span class="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded border border-gray-600">Robustness</span>
+                            <span class="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded border border-gray-600">Explainability</span>
+                            <span class="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded border border-gray-600">Transparency</span>
+                            <span class="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded border border-gray-600">Governance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 space-y-6">
+                    <img src="Img_11.png" alt="Responsible AI Framework" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2" loading="lazy">
+                    <img src="Img_12.png" alt="AI Lifecycle" class="w-full rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.2)] border border-gray-700 bg-gray-900 p-2" loading="lazy">
+                </div>
+            </section>
+
+            <section class="pt-16">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-white mb-4">AI-Augmented Decision Making & Bias</h2>
+                    <p class="text-gray-400 max-w-3xl mx-auto">The greatest challenge in AI integration is that both human operators and AI systems bring inherent biases to the table. Understanding these dynamics is critical for building trustworthy systems.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="bg-blue-900/10 p-6 rounded-xl border border-blue-900/50">
+                        <h3 class="text-xl font-bold text-blue-400 mb-4 border-b border-blue-900/50 pb-2">Human Cognitive Biases</h3>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li><strong class="text-white block">Recency Bias:</strong> We heavily favor information we have seen most recently.</li>
+                            <li><strong class="text-white block">Confirmation Bias:</strong> We actively seek out information that confirms our pre-existing beliefs.</li>
+                            <li><strong class="text-white block">Anchoring Bias:</strong> Over-relying on the very first piece of information received and adjusting insufficiently from there.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-purple-900/10 p-6 rounded-xl border border-purple-900/50">
+                        <h3 class="text-xl font-bold text-purple-400 mb-4 border-b border-purple-900/50 pb-2">AI-Specific Human Biases</h3>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li><strong class="text-white block">Algorithm Aversion:</strong> Rejecting sound advice from an algorithm when you would have accepted the exact same advice from a human.</li>
+                            <li><strong class="text-white block">Algorithm Appreciation:</strong> The opposite, rejecting valid human advice because you blindly trust the algorithm.</li>
+                            <li><strong class="text-white block">Eliza Effect:</strong> Projecting actual human-like cognition and emotion onto a computer system.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-emerald-900/10 p-6 rounded-xl border border-emerald-900/50">
+                        <h3 class="text-xl font-bold text-emerald-400 mb-4 border-b border-emerald-900/50 pb-2">AI System Biases</h3>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li><strong class="text-white block">Self-Serving Bias:</strong> An LLM favoring its own generated responses over answers provided by external sources.</li>
+                            <li><strong class="text-white block">Position Bias:</strong> Favoring a specific option simply based on where it appeared in the prompt (e.g., always picking "Option A").</li>
+                            <li><strong class="text-white block">Verbosity Bias:</strong> Favoring longer, wordier answers regardless of their actual quality or accuracy.</li>
+                            <li><strong class="text-white block">Sycophancy:</strong> The model prioritizing user satisfaction and agreement over factual accuracy and honesty.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="bg-gray-950 py-8 text-center border-t border-gray-900 mt-12">
+            <p class="text-gray-500 text-sm">(c) 2026 Yogesh Muppiri. AI Concepts Simplified.</p>
+        </footer>
+    </div>
+
+    <script>
+        async function loadParticles() {
+            if (!window.tsParticles) return;
+
+            await tsParticles.load("tsparticles", {
+                background: { color: { value: "transparent" } },
+                fpsLimit: 60,
+                particles: {
+                    color: { value: "#3b82f6" },
+                    links: { color: "#3b82f6", distance: 150, enable: true, opacity: 0.1, width: 1 },
+                    move: { enable: true, speed: 0.8, direction: "none", random: false, straight: false, outModes: { default: "bounce" } },
+                    number: { density: { enable: true, area: 800 }, value: 40 },
+                    opacity: { value: 0.2 },
+                    shape: { type: "circle" },
+                    size: { value: { min: 1, max: 2 } }
+                },
+                detectRetina: true
+            });
+        }
+        window.addEventListener("load", loadParticles);
+    </script>
+</body>
+</html>

@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yogesh Muppiri | Software Development Engineer</title>
+    <meta name="description" content="Yogesh Muppiri is a Software Development Engineer building extreme-scale backend and GenAI systems with Java, Spring Boot, and AWS. Explore experience, projects, and achievements.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Yogesh Muppiri | Software Development Engineer">
+    <meta property="og:description" content="Portfolio of Yogesh Muppiri: extreme-scale infrastructure, GenAI systems, and production engineering impact.">
+    <meta property="og:image" content="profile.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Yogesh Muppiri | Software Development Engineer">
+    <meta name="twitter:description" content="Explore Yogesh Muppiri's experience, projects, and engineering impact.">
+    <link rel="icon" type="image/png" href="mylogo.png">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-base: #030712;
+            --bg-soft: #0b1220;
+            --ink: #e5e7eb;
+            --accent: #3b82f6;
+            --accent-soft: rgba(59, 130, 246, 0.18);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "IBM Plex Sans", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(1100px 500px at 80% -10%, rgba(59, 130, 246, 0.12), transparent 60%),
+                radial-gradient(800px 500px at -10% 10%, rgba(14, 165, 233, 0.09), transparent 55%),
+                linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-base) 45%, #02040a 100%);
+            min-height: 100vh;
+        }
+        h1, h2, h3, h4 {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        .prompt-chip {
+            border: 1px solid rgba(96, 165, 250, 0.35);
+            background: rgba(30, 41, 59, 0.65);
+        }
+        .prompt-chip:hover {
+            background: var(--accent-soft);
+            border-color: rgba(96, 165, 250, 0.75);
+        }
+    </style>
+    <script type="application/ld+json">
+        {
+            "@context":"https://schema.org",
+            "@type":"Person",
+            "name":"Yogesh Muppiri",
+            "jobTitle":"Software Development Engineer",
+            "worksFor":{"@type":"Organization","name":"Amazon"},
+            "url":"https://www.linkedin.com/in/yogeshmuppiri/",
+            "sameAs":["https://www.linkedin.com/in/yogeshmuppiri/"],
+            "email":"mailto:maruthiyogesh2472@gmail.com",
+            "knowsAbout":["Java","Spring Boot","AWS","Generative AI","Microservices","Distributed Systems"]
+        }
+    </script>
+</head>
+<body class="text-gray-100 antialiased relative">
+
+    <div id="tsparticles" class="fixed inset-0 z-0 pointer-events-none"></div>
+
+    <div class="relative z-10">
+        
+        <nav aria-label="Primary" class="backdrop-blur-sm bg-gray-900/50 sticky top-0 border-b border-gray-800 z-50">
+            <div class="p-6 flex justify-between items-center max-w-6xl mx-auto">
+                <a href="index.html" aria-label="Go to homepage">
+                    <img src="mylogo.png" alt="Yogesh logo" class="h-10 w-auto object-contain">
+                </a>
+                <div class="space-x-4 hidden md:flex text-sm font-medium">
+                    <a href="#about" class="hover:text-blue-400 transition">About</a>
+                    <a href="#experience" class="hover:text-blue-400 transition">Experience & Skills</a>
+                    <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
+                    <a href="#achievements" class="hover:text-blue-400 transition">Achievements</a>
+                    <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+                </div>
+                <button type="button" id="mobile-nav-toggle" onclick="toggleMobileNav()" class="md:hidden text-gray-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 rounded p-1" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-nav-menu" class="md:hidden hidden px-6 pb-4 max-w-6xl mx-auto">
+                <div class="flex flex-col gap-3 text-sm font-medium border-t border-gray-800 pt-4">
+                    <a href="#about" class="hover:text-blue-400 transition" onclick="closeMobileNav()">About</a>
+                    <a href="#experience" class="hover:text-blue-400 transition" onclick="closeMobileNav()">Experience & Skills</a>
+                    <a href="#projects" class="hover:text-blue-400 transition" onclick="closeMobileNav()">Projects</a>
+                    <a href="#achievements" class="hover:text-blue-400 transition" onclick="closeMobileNav()">Achievements</a>
+                    <a href="#contact" class="hover:text-blue-400 transition" onclick="closeMobileNav()">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+        <header class="min-h-[80vh] flex flex-col md:flex-row justify-center items-center px-6 max-w-6xl mx-auto gap-12 pt-12 md:pt-0">
+            <div class="w-full md:w-3/5 text-center md:text-left">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-lg">Yogesh Muppiri</h1>
+                <h2 class="text-2xl md:text-3xl text-blue-400 mb-6 font-semibold">Software Development Engineer | Amazon</h2>
+                <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto md:mx-0">
+                    Building resilient distributed systems that power global scale, production reliability, and measurable business impact.
+                </p>
+                <div class="space-x-4 flex justify-center md:justify-start">
+                    <a href="https://www.linkedin.com/in/yogeshmuppiri/" target="_blank" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition shadow-lg shadow-blue-500/30">LinkedIn</a>
+                    <a href="#contact" class="px-6 py-3 border border-gray-500 hover:border-white text-gray-300 hover:text-white rounded-lg font-medium transition">Get in Touch</a>
+                </div>
+            </div>
+            
+            <div class="w-full md:w-2/5 flex justify-center mt-8 md:mt-0">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-500/30 shadow-2xl shadow-blue-500/20 bg-gray-800 flex items-center justify-center">
+                    <img src="profile.jpeg" alt="Portrait of Yogesh Muppiri" class="object-cover w-full h-full" fetchpriority="high" decoding="async">
+                </div>
+            </div>
+        </header>
+
+        <section id="about" class="py-20 px-4 max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 border-b border-gray-700 pb-2">About Me</h2>
+            <p class="text-gray-300 leading-relaxed mb-6 text-lg">
+                I am an experienced Software Development Engineer specializing in architecting secure, scalable backend systems and high-availability microservices. With a Master's in Business Analytics and Artificial Intelligence from UT Dallas, I seamlessly bridge the gap between advanced AI capabilities and robust, enterprise-grade infrastructure.
+            </p>
+            <p class="text-gray-300 leading-relaxed text-lg mb-8">
+                My engineering focus spans across developing complex authentication flows, orchestrating containerized deployments, and automating infrastructure with Terraform and CI/CD pipelines. Leveraging languages like Java and Python alongside extensive AWS cloud resources, I am passionate about building reliable, fault-tolerant software that drives real-world impact at an extreme scale.
+            </p>
+        </section>
+
+        <section id="experience" class="py-20 bg-gray-800/40">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex flex-col lg:flex-row gap-16">
+                    
+                    <div class="w-full lg:w-2/3">
+                        <h2 class="text-3xl font-bold mb-8 border-b border-gray-700 pb-2">Experience</h2>
+                        
+                        <div class="mb-12 relative border-l-2 border-blue-500 pl-6">
+                            <div class="absolute w-4 h-4 bg-blue-500 rounded-full -left-[9px] top-2"></div>
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+                                <h3 class="text-2xl font-semibold text-white">Software Development Engineer</h3>
+                                <span class="text-blue-400 font-medium whitespace-nowrap md:ml-4">July 2025 - Present</span>
+                            </div>
+                            <h4 class="text-xl text-gray-400 mb-4">Amazon | Seattle, WA</h4>
+                            <ul class="text-gray-300 space-y-2 list-disc list-inside">
+                                <li>Engineered extreme-scale infrastructure at Amazon, supporting <span class="text-white font-semibold">100B+ global memberships</span> and building highly distributed backend systems.</li>
+                                <li>Architected high-throughput Generative AI and backend evaluation pipelines capable of processing <span class="text-white font-semibold">27M+ product assessments per second</span> with optimized compute efficiency.</li>
+                                <li>Designed and scaled a tier-1 authentication gateway system (Helis) serving <span class="text-white font-semibold">300+ internal clients</span>, implementing secure API mediation and zero-trust protection mechanisms.</li>
+                                <li>Built and optimized Coral-based throttling using a token bucket algorithm to mitigate burst traffic and protect downstream services from update storms.</li>
+                                <li>Managed and optimized <span class="text-white font-semibold">3M+ active selection rules</span>, ensuring precision-based filtering and highly scalable data flow across distributed microservices.</li>
+                                <li>Contributed to multi-region deployment across <span class="text-white font-semibold">6 global regions</span> for a <span class="text-white font-semibold">1M+ TPS</span> service, achieving <span class="text-white font-semibold">p99 latency of 150ms</span> through performance tuning and resilient architecture design.</li>
+                                <li>Optimized high-volume membership lookup workloads by introducing an in-memory caching architecture with S3 storage fallback, reducing infrastructure costs and improving latency for millions of daily API calls under extreme-scale traffic conditions.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-12 relative border-l-2 border-gray-600 pl-6">
+                            <div class="absolute w-4 h-4 bg-gray-600 rounded-full -left-[9px] top-2"></div>
+                            <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+                                <h3 class="text-2xl font-semibold text-white">AI/ML Engineer</h3>
+                                <span class="text-gray-400 font-medium whitespace-nowrap md:ml-4">March 2024 - Feb 2025</span>
+                            </div>
+                            <h4 class="text-xl text-gray-400 mb-4">Community Dreams Foundation | Orlando, FL</h4>
+                            <ul class="text-gray-300 space-y-2 list-disc list-inside">
+                                <li>Enhanced LLaMA 2 performance on Groq's infrastructure by integrating RAG pipelines in AWS SageMaker,improving contextual accuracy by 30%.</li>
+                                <li>Engineered an AI-driven screening system using LLMs (Gemma 2, LLaMA 2), increasing shortlisting accuracy by 35%.</li>
+                                <li>Deployed ML models on AWS with Terraform, configuring EC2, NAT Gateway, and Route 53; automated evaluation using CloudWatch, reducing hiring time by 25%.</li>
+				<li>Created a real-time AI system to analyse interview responses and visualize actionable insights with Matplotlib, reducing 
+assessment time by 40% and improving selection accuracy. </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="w-full lg:w-1/3">
+                        <div class="sticky top-28 bg-gray-900/80 p-6 rounded-xl border border-gray-700 shadow-xl backdrop-blur-sm">
+                            <h2 class="text-2xl font-bold mb-6 border-b border-gray-700 pb-2 text-white">Technical Skills</h2>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <h3 class="text-blue-400 font-semibold mb-3 text-sm uppercase tracking-wider">Programming Languages</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Java</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Python (OOP)</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">TypeScript</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">C++</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">SQL</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-blue-400 font-semibold mb-3 text-sm uppercase tracking-wider">Backend & Systems</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Spring Boot</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Node.js</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Microservices</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">RESTful APIs</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">GraphQL</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Dagger</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">API Gateway</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Redis</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Concurrency</span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-blue-400 font-semibold mb-3 text-sm uppercase tracking-wider">Cloud & AWS</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Amazon S3</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">VPC</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">RDS</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">DynamoDB</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">AWS Lambda</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">ELB</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">IAM</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">CloudWatch</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Docker</span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-blue-400 font-semibold mb-3 text-sm uppercase tracking-wider">AI / ML</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Hugging Face</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Gemma 2 / LLaMA 2</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">MLOps</span>
+                                        <span class="px-2.5 py-1 bg-gray-800 rounded border border-gray-600 text-sm text-gray-200">Predictive Modelling</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 px-4 max-w-6xl mx-auto border-t border-gray-800">
+            <h2 class="text-3xl font-bold mb-12 border-b border-gray-700 pb-2">Academic Projects</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-10 mb-20 items-center">
+                <div class="w-full lg:w-3/5">
+                    <div class="flex items-center gap-3 mb-4">
+                        <h3 class="text-2xl font-bold text-white">Knowva AI</h3>
+                        <span class="px-3 py-1 bg-blue-900/50 text-blue-300 text-xs rounded-full border border-blue-700">AI & LLM Application</span>
+                    </div>
+                    <h4 class="text-lg text-gray-400 mb-4 font-medium">AI-Powered Document Intelligence & Medical Q&A Assistant</h4>
+                    <ul class="text-gray-300 space-y-4 list-disc list-inside">
+                        <li>A full-stack LLM application combining retrieval-augmented generation (RAG), FAISS vector indexing, and LangChain pipelines to intelligently parse multi-modal formats (PDF, DOCX) and cut manual review time by up to 80%.</li>
+                        <li>Architected with a custom Streamlit frontend and powered by highly scalable NVIDIA NIM and OpenAI APIs, featuring robust prompt chaining, real-time inference, and a specialized Medical Q&A Assistant.</li>
+                    </ul>
+                    <div class="flex gap-2 mt-6">
+                        <span class="text-xs text-gray-500 font-mono bg-gray-800 px-2 py-1 rounded">LangChain</span>
+                        <span class="text-xs text-gray-500 font-mono bg-gray-800 px-2 py-1 rounded">FAISS</span>
+                        <span class="text-xs text-gray-500 font-mono bg-gray-800 px-2 py-1 rounded">Streamlit</span>
+                        <span class="text-xs text-gray-500 font-mono bg-gray-800 px-2 py-1 rounded">OpenAI APIs</span>
+                    </div>
+                </div>
+                <div class="w-full lg:w-2/5">
+                    <video src="knowva1.mp4" autoplay loop muted playsinline preload="none" class="w-full rounded-xl border border-gray-700 shadow-2xl shadow-blue-900/20"></video>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row-reverse gap-10 items-center">
+                <div class="w-full lg:w-3/5">
+                    <div class="flex items-center gap-3 mb-4">
+                        <h3 class="text-2xl font-bold text-white">Walmart Data Analysis</h3>
+                        <span class="px-3 py-1 bg-emerald-900/50 text-emerald-300 text-xs rounded-full border border-emerald-700">Data Science & ML</span>
+                    </div>
+                    <div class="text-gray-300 space-y-4">
+                        <p>Conducted a comprehensive analysis of North American Walmart store sales data to identify key influencing factors such as holidays, fuel prices, weather variations, and unemployment rates.</p>
+                        <p>Executed meticulous data cleaning pipelines and applied sophisticated machine learning models, including Random Forest and Decision Trees, to derive actionable insights for strategic decision-making.</p>
+                        <p>Demonstrated the critical economic footprint of these stores, highlighting how stable sales performance prevents local unemployment and bolsters community well-being through essential tax revenue.</p>
+                    </div>
+                    <div class="flex gap-2 mt-6">
+                        <span class="text-xs text-gray-500 font-mono bg-gray-800 px-2 py-1 rounded">Python</span>
+                        <span class="text-xs text-gray-500 font-mono bg-gray-800 px-2 py-1 rounded">Data Analyst</span>
+                        <span class="text-xs text-gray-500 font-mono bg-gray-800 px-2 py-1 rounded">Data Normalization</span>
+                        <span class="text-xs text-gray-500 font-mono bg-gray-800 px-2 py-1 rounded">Tableau</span>
+                    </div>
+                </div>
+                <div class="w-full lg:w-2/5">
+                    <img src="walmart.jpg" alt="Walmart Data Analysis Team" class="w-full rounded-xl border border-gray-700 shadow-2xl shadow-emerald-900/20">
+                </div>
+            </div>
+        </section>
+        <section class="py-12 px-4 max-w-6xl mx-auto my-8 bg-gradient-to-r from-blue-900/40 to-purple-900/40 border border-blue-500/30 rounded-2xl text-center shadow-[0_0_30px_rgba(59,130,246,0.15)] relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiMzQjgyRjYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50"></div>
+            <div class="relative z-10">
+                <h2 class="text-3xl font-extrabold mb-4 text-white drop-shadow-md">AI Fundamentals? (just in 15 minutes!)</h2>
+                <p class="text-gray-300 mb-6 max-w-2xl mx-auto text-lg">Take a quick dive into the mechanics of Machine Learning, LLMs, and Foundation Models. No fluff, just the core engineering concepts.</p>
+                <a href="how-ai-works.html" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold transition-all shadow-lg shadow-blue-500/30">
+                    Read the 15-Min Breakdown
+                </a>
+            </div>
+        </section>
+
+        <section id="achievements" class="py-20 px-4 max-w-6xl mx-auto border-t border-gray-800">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-8 border-b border-gray-700 pb-2">Certifications</h2>
+                    <div class="flex items-center gap-4 bg-gray-800/60 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition">
+                            <img src="AWS.jpg" alt="AWS Logo" class="w-10 h-10 object-contain rounded bg-white p-1">
+                            <div>
+                                <h4 class="font-semibold text-gray-200">Certified Cloud Practitioner</h4>
+                                <p class="text-sm text-gray-400">AWS</p>
+                            </div>
+                        </div>
+                    <div class="flex items-center gap-4 bg-gray-800/60 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition">
+                            <img src="Microsoft.png" alt="Microsoft Logo" class="w-10 h-10 object-contain rounded bg-white p-1">
+                            <div>
+                                <h4 class="font-semibold text-gray-200">Azure Administrator Associate</h4>
+                                <p class="text-sm text-gray-400">Microsoft</p>
+                            </div>
+                        </div>
+                    <div class="flex items-center gap-4 bg-gray-800/60 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition">
+                            <img src="IBM.jpg" alt="IBM Logo" class="w-10 h-10 object-contain rounded bg-white p-1">
+                            <div>
+                                <h4 class="font-semibold text-gray-200">Python for Data Science, AI & Development</h4>
+                                <p class="text-sm text-gray-400">IBM</p>
+                            </div>
+                        </div>
+                    <div class="flex items-center gap-4 bg-gray-800/60 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition">
+                            <img src="University of London.jpg" alt="UOL Logo" class="w-10 h-10 object-contain rounded bg-white p-1">
+                            <div>
+                                <h4 class="font-semibold text-gray-200">Machine Learning for All</h4>
+                                <p class="text-sm text-gray-400">University of London</p>
+                            </div>
+                        </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 bg-gray-800/60 p-4 rounded-lg border border-gray-700 hover:border-blue-500 transition">
+                            <img src="University of Minnesota.webp" alt="UMN Logo" class="w-10 h-10 object-contain rounded bg-white p-1">
+                            <div>
+                                <h4 class="font-semibold text-gray-200">Software Development Processes & Methodologies</h4>
+                                <p class="text-sm text-gray-400">University of Minnesota</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-12">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-8 border-b border-gray-700 pb-2">Research Publications</h2>
+                        <ul class="space-y-4">
+                            <li class="bg-gray-800/60 p-4 rounded-lg border border-gray-700 border-l-4 border-l-blue-500">
+                                <h4 class="font-semibold text-gray-200">Detection of Cyber-attacks using Machine Learning technique</h4>
+                                <p class="text-sm text-gray-400 mt-1">Peer-reviewed Research</p>
+                            </li>
+                            <li class="bg-gray-800/60 p-4 rounded-lg border border-gray-700 border-l-4 border-l-blue-500">
+                                <h4 class="font-semibold text-gray-200">Diabetes Prediction using Ensembling Methods in Supervised learning</h4>
+                                <p class="text-sm text-gray-400 mt-1">Peer-reviewed Research</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6 border-b border-gray-700 pb-2">Volunteering & Leadership</h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-4">
+                                <img src="gusac.jpg" alt="GUSAC Logo" class="w-8 h-8 object-contain rounded bg-white p-1">
+                                <div>
+                                    <h4 class="text-gray-200 font-medium">Event Coordinator</h4>
+                                    <p class="text-xs text-gray-400">GUSAC - GITAM University Science and Activity Centre</p>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <img src="nss.png" alt="NSS Logo" class="w-8 h-8 object-contain rounded bg-white p-1">
+                                <div>
+                                    <h4 class="text-gray-200 font-medium">NSS Member</h4>
+                                    <p class="text-xs text-gray-400">UPES</p>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <img src="redcross.png" alt="IRCS Logo" class="w-8 h-8 object-contain rounded bg-white p-1">
+                                <div>
+                                    <h4 class="text-gray-200 font-medium">Member</h4>
+                                    <p class="text-xs text-gray-400">Indian Red Cross Society (National Headquarters, New Delhi)</p>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <img src="gitam.jpeg" alt="GITAM Logo" class="w-8 h-8 object-contain rounded bg-white p-1">
+                                <div>
+                                    <h4 class="text-gray-200 font-medium">Teaching Assistant</h4>
+                                    <p class="text-xs text-gray-400">GITAM Deemed University</p>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <img src="ais.png" alt="AIS Logo" class="w-8 h-8 object-contain rounded bg-white p-1">
+                                <div>
+                                    <h4 class="text-gray-200 font-medium">Programming Officer</h4>
+                                    <p class="text-xs text-gray-400">Association for Information Systems</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 px-4 bg-gray-800/80 border-t border-b border-gray-700 text-center">
+            <h2 class="text-3xl font-bold mb-4">Creative Pursuits</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8">When I'm not writing code or analyzing data, I step away from the screen and capture life through a lens. Check out my photography portfolio.</p>
+            <a href="photography.html" class="inline-block px-8 py-3 bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white rounded-lg font-bold transition-all shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                View Photography Gallery
+            </a>
+        </section>
+
+        <footer id="contact" class="bg-gray-950 py-12 px-4 text-center">
+            <h2 class="text-2xl font-bold mb-6">Let's Connect</h2>
+            <p class="text-gray-400 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+                Always eager to connect with engineering leaders and fellow innovators.
+            </p>
+            <a href="mailto:maruthiyogesh2472@gmail.com" class="text-blue-400 hover:text-blue-300 text-lg font-medium transition">maruthiyogesh2472@gmail.com</a>
+            <p class="text-gray-600 mt-12 text-sm">(c) 2026 Yogesh Muppiri. Built with passion and code.</p>
+        </footer>
+    </div>
+
+    <!-- AI Chat Widget -->
+    <div id="chat-widget" class="fixed bottom-4 right-4 left-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 flex flex-col items-end font-sans">
+        <div id="chat-window" class="hidden w-full sm:w-[28rem] lg:w-[34rem] h-[64vh] max-h-[38rem] sm:h-[34rem] bg-gray-900 border border-gray-700 rounded-2xl sm:rounded-xl shadow-2xl flex flex-col mb-3 sm:mb-4 overflow-hidden transition-all transform origin-bottom-right">
+            <div class="bg-gray-800 p-4 border-b border-gray-700 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <h3 class="text-blue-400 font-bold text-sm">Yogesh's AI Assistant</h3>
+                </div>
+                <button type="button" onclick="toggleChat()" aria-label="Close assistant chat" class="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">&times;</button>
+            </div>
+            <div id="chat-messages" role="log" aria-live="polite" aria-label="Assistant messages" class="flex-1 p-4 overflow-y-auto space-y-4 text-sm scrollbar-thin scrollbar-thumb-gray-700 bg-gray-900/95">
+                <div class="bg-gray-800 text-gray-200 p-3 rounded-lg rounded-tl-none max-w-[85%] border border-gray-700">
+                    Hi! This is Yogesh's AI Assistant. I can help with information about Yogesh, and I can also answer general questions like Gemini AI.
+                </div>
+            </div>
+            <div id="prompt-chips" class="px-3 py-2 bg-gray-900 border-t border-gray-800 flex flex-wrap gap-2">
+                <button type="button" class="prompt-chip text-xs text-blue-200 px-2.5 py-1.5 rounded-full transition" onclick="askSuggested('Tell me about Yogesh in 5 bullets with metrics')">About Yogesh</button>
+                <button type="button" class="prompt-chip text-xs text-blue-200 px-2.5 py-1.5 rounded-full transition" onclick="askSuggested('What are Yogesh top technical skills?')">Skills</button>
+                <button type="button" class="prompt-chip text-xs text-blue-200 px-2.5 py-1.5 rounded-full transition" onclick="askSuggested('What are Yogesh top achievements?')">Achievements</button>
+            </div>
+            <div class="px-3 py-2 bg-gray-900 border-t border-gray-800 flex items-center gap-2">
+                <input type="file" id="doc-file-input" accept=".pdf,.docx,.txt" class="hidden" onchange="handleFileSelection(event)">
+                <button type="button" onclick="document.getElementById('doc-file-input').click()" class="text-xs px-2.5 py-1.5 rounded border border-gray-600 text-gray-300 hover:text-white hover:border-blue-500 transition">Upload Doc</button>
+                <select id="summary-mode" class="text-xs bg-gray-800 border border-gray-700 rounded px-2 py-1 text-gray-200">
+                    <option value="short">Short</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="detailed">Detailed</option>
+                </select>
+                <button type="button" id="summarize-btn" onclick="summarizeUploadedDocument()" class="text-xs px-2.5 py-1.5 rounded bg-blue-700 hover:bg-blue-600 text-white transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>Summarize</button>
+                <span id="file-label" class="text-[11px] text-gray-400 truncate flex-1"></span>
+            </div>
+            <div class="p-3 bg-gray-800 border-t border-gray-700">
+                <form onsubmit="sendMessage(event)" class="flex gap-2">
+                    <label for="chat-input" class="sr-only">Ask Yogesh's AI Assistant a question</label>
+                    <input type="text" id="chat-input" placeholder="Ask a question..." aria-label="Chat message input" class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-blue-500 placeholder-gray-500">
+                    <button type="button" id="mic-btn" onclick="startVoiceInput()" aria-label="Speak your question" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14a3 3 0 003-3V6a3 3 0 10-6 0v5a3 3 0 003 3zm0 0v4m-4 0h8M5 11a7 7 0 0014 0" />
+                        </svg>
+                    </button>
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-2 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed" id="send-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="chat-toast" onclick="toggleChat()" class="hidden mb-2 max-w-[16rem] bg-gray-900/95 border border-blue-500/40 text-blue-100 text-xs rounded-lg px-3 py-2 shadow-lg cursor-pointer">
+            Hey, this is Yogesh's assistant. Tap to chat.
+        </div>
+        <button type="button" onclick="toggleChat()" aria-label="Open assistant chat" title="Open AI assistant" class="bg-blue-600 hover:bg-blue-500 text-white p-4 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)] transition transform hover:scale-105 active:scale-95 flex items-center justify-center ml-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        async function loadParticles() {
+            if (!window.tsParticles) return;
+            await tsParticles.load("tsparticles", {
+                background: { color: { value: "transparent" } },
+                fpsLimit: 60,
+                particles: {
+                    color: { value: "#3b82f6" },
+                    links: { color: "#3b82f6", distance: 150, enable: true, opacity: 0.2, width: 1 },
+                    move: { enable: true, speed: 1, direction: "none", random: false, straight: false, outModes: { default: "bounce" } },
+                    number: { density: { enable: true, area: 800 }, value: 50 },
+                    opacity: { value: 0.3 },
+                    shape: { type: "circle" },
+                    size: { value: { min: 1, max: 3 } }
+                },
+                detectRetina: true
+            });
+        }
+        window.addEventListener("load", loadParticles);
+
+        // --- Chat Widget Logic ---
+        
+        const chatWindow = document.getElementById('chat-window');
+        const mobileNavMenu = document.getElementById('mobile-nav-menu');
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+        const chatToast = document.getElementById('chat-toast');
+        const micBtn = document.getElementById('mic-btn');
+        const docFileInput = document.getElementById('doc-file-input');
+        const summarizeBtn = document.getElementById('summarize-btn');
+        const summaryModeSelect = document.getElementById('summary-mode');
+        const fileLabel = document.getElementById('file-label');
+        let voiceRepliesEnabled = false;
+        let recognition;
+        let isListening = false;
+        let selectedDocFile = null;
+        let welcomeShown = false;
+
+        function toggleMobileNav() {
+            if (!mobileNavMenu || !mobileNavToggle) return;
+            mobileNavMenu.classList.toggle('hidden');
+            const expanded = !mobileNavMenu.classList.contains('hidden');
+            mobileNavToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+
+        function closeMobileNav() {
+            if (!mobileNavMenu || !mobileNavToggle) return;
+            mobileNavMenu.classList.add('hidden');
+            mobileNavToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        function toggleChat() {
+            chatWindow.classList.toggle('hidden');
+            chatToast.classList.add('hidden');
+            if (!chatWindow.classList.contains('hidden')) {
+                setTimeout(() => chatInput.focus(), 100);
+            }
+        }
+
+        function showAssistantWelcome() {
+            if (welcomeShown) return;
+            chatToast.classList.remove('hidden');
+            welcomeShown = true;
+        }
+
+        function askSuggested(question) {
+            chatInput.value = question;
+            chatInput.focus();
+        }
+
+        function supportsSpeechRecognition() {
+            return 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
+        }
+
+        function initSpeechRecognition() {
+            if (!supportsSpeechRecognition()) {
+                micBtn.disabled = true;
+                micBtn.title = "Voice input not supported in this browser";
+                micBtn.classList.add("opacity-50", "cursor-not-allowed");
+                return;
+            }
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = 'en-US';
+            recognition.interimResults = true;
+            recognition.continuous = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.onresult = (event) => {
+                let finalTranscript = '';
+                let interimTranscript = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    const result = event.results[i];
+                    const transcript = result[0] && result[0].transcript ? result[0].transcript : '';
+                    if (result.isFinal) {
+                        finalTranscript += transcript + ' ';
+                    } else {
+                        interimTranscript += transcript + ' ';
+                    }
+                }
+                chatInput.value = (finalTranscript + interimTranscript).trim();
+                chatInput.focus();
+            };
+
+            recognition.onstart = () => {
+                isListening = true;
+                micBtn.classList.remove("bg-gray-700", "hover:bg-gray-600");
+                micBtn.classList.add("bg-red-600", "hover:bg-red-500");
+            };
+
+            recognition.onend = () => {
+                isListening = false;
+                micBtn.classList.remove("bg-red-600", "hover:bg-red-500");
+                micBtn.classList.add("bg-gray-700", "hover:bg-gray-600");
+            };
+
+            recognition.onerror = (event) => {
+                isListening = false;
+                micBtn.classList.remove("bg-red-600", "hover:bg-red-500");
+                micBtn.classList.add("bg-gray-700", "hover:bg-gray-600");
+                if (event && event.error === "not-allowed") {
+                    addMessage("Microphone permission is blocked. Please allow microphone access and try again.", 'bot');
+                } else {
+                    addMessage("Voice input had an issue. Please try speaking again.", 'bot');
+                }
+            };
+        }
+
+        function startVoiceInput() {
+            if (!recognition) return;
+            if (isListening) {
+                recognition.stop();
+                return;
+            }
+            try {
+                recognition.start();
+            } catch (e) {
+                addMessage("Voice input is not ready yet. Please try again.", 'bot');
+            }
+        }
+
+        function speakText(text) {
+            if (!voiceRepliesEnabled || !('speechSynthesis' in window)) return;
+            const cleanText = text.replace(/\*\*/g, '').replace(/<br>/g, ' ').trim();
+            if (!cleanText) return;
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function handleFileSelection(event) {
+            const file = event.target.files && event.target.files[0] ? event.target.files[0] : null;
+            selectedDocFile = file;
+            if (!file) {
+                fileLabel.textContent = '';
+                summarizeBtn.disabled = true;
+                return;
+            }
+            fileLabel.textContent = file.name;
+            summarizeBtn.disabled = false;
+        }
+
+        async function summarizeUploadedDocument() {
+            if (!selectedDocFile) return;
+
+            const formData = new FormData();
+            formData.append('file', selectedDocFile);
+            formData.append('mode', summaryModeSelect.value);
+
+            summarizeBtn.disabled = true;
+            const loadingId = addMessage('Summarizing your document...', 'bot', true);
+
+            try {
+                const response = await fetch('/api/summarize', {
+                    method: 'POST',
+                    body: formData
+                });
+                const summaryText = await response.text();
+                document.getElementById(loadingId).remove();
+                addMessage(summaryText, 'bot');
+                speakText(summaryText);
+            } catch (error) {
+                document.getElementById(loadingId).remove();
+                addMessage('Error summarizing document. Please try again.', 'bot');
+                console.error(error);
+            } finally {
+                summarizeBtn.disabled = selectedDocFile == null;
+                docFileInput.value = '';
+                selectedDocFile = null;
+                fileLabel.textContent = '';
+            }
+        }
+
+        async function sendMessage(e) {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Add User Message
+            addMessage(message, 'user');
+            chatInput.value = '';
+            sendBtn.disabled = true;
+
+            // Add Loading Indicator
+            const loadingId = addMessage('Thinking...', 'bot', true);
+
+            try {
+                // Call our Java Spring Boot Backend
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+                
+                const botReply = await response.text();
+                
+                document.getElementById(loadingId).remove();
+                addMessage(botReply, 'bot');
+                speakText(botReply);
+            } catch (error) {
+                document.getElementById(loadingId).remove();
+                addMessage("Error connecting to AI. Please check API Key.", 'bot');
+                console.error(error);
+            } finally {
+                sendBtn.disabled = false;
+                chatInput.focus();
+            }
+        }
+
+        function addMessage(text, sender, isLoading = false) {
+            const div = document.createElement('div');
+            const id = Math.random().toString(36).substr(2, 9);
+            div.id = id;
+            
+            const isUser = sender === 'user';
+            div.className = isUser 
+                ? "bg-blue-600 text-white p-3 rounded-lg rounded-tr-none max-w-[85%] self-end ml-auto shadow-md"
+                : "bg-gray-800 text-gray-200 p-3 rounded-lg rounded-tl-none max-w-[85%] border border-gray-700 shadow-sm";
+            
+            if (isLoading) div.classList.add("animate-pulse", "italic", "text-gray-400");
+            
+            // Simple markdown-like parsing for bold text
+            div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+            
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return id;
+        }
+
+        // Lazy-load below-the-fold media for faster first paint.
+        document.querySelectorAll('img:not(header img)').forEach((img) => {
+            img.loading = 'lazy';
+            img.decoding = 'async';
+        });
+        initSpeechRecognition();
+
+        // Proactive greeting when the page loads.
+        setTimeout(showAssistantWelcome, 1200);
+    </script>
+</body>
+</html>

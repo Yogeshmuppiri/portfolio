@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography | Yogesh Muppiri</title>
+    <link rel="icon" type="image/png" href="mylogo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* CSS Masonry Layout */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+        
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            position: relative;
+            background-color: #1f2937; /* Placeholder color while loading */
+        }
+        
+        .masonry-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .masonry-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Optional dark overlay on hover to make it feel premium */
+        .masonry-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .masonry-item:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans antialiased selection:bg-blue-500 selection:text-white">
+
+    <nav aria-label="Primary" class="backdrop-blur-sm bg-gray-900/50 sticky top-0 border-b border-gray-800 z-50">
+        <div class="p-4 sm:p-6 flex justify-between items-center max-w-6xl mx-auto">
+        <a href="index.html" class="group flex items-center text-gray-300 hover:text-white transition text-sm sm:text-base font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transform group-hover:-translate-x-1 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to Portfolio
+        </a>
+        <a href="index.html" aria-label="Go to homepage">
+            <img src="mylogo.png" alt="Yogesh logo" class="h-9 sm:h-10 w-auto object-contain">
+        </a>
+        </div>
+    </nav>
+
+<header class="py-20 px-4 max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Perspectives in Focus</h1>
+        <div class="w-24 h-1 bg-blue-500 mx-auto mb-8 rounded-full"></div>
+        <blockquote class="text-xl md:text-2xl text-white italic font-serif mb-6">
+            "You don't take a photograph, you make it." <br>
+            <span class="text-lg text-blue-400 font-sans not-italic font-semibold">- Ansel Adams</span>
+        </blockquote>
+        <p class="text-lg text-gray-400 leading-relaxed max-w-3xl mx-auto">
+            While my day-to-day involves engineering extreme-scale software, photography is where I slow down and find balance. Exploring the mountains, lakes, and cityscapes of the Pacific Northwest allows me to step away from the screen, chase the perfect light, and capture the world exactly as I see it.
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 pb-24">
+        <div class="masonry-grid">
+            
+            <div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_6524.JPG" alt="Snowy evergreen forest and lake wrapped in fog" loading="lazy">
+            </div>
+
+            <div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_4892.JPG" alt="Seattle Great Wheel on a cloudy day" loading="lazy">
+            </div>
+
+            <div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_5755.JPG" alt="Wooden boardwalk leading to a serene mountain lake" loading="lazy">
+            </div>
+
+            <div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_3833.JPG" alt="Clear mountain stream flowing through a lush green valley with snow-capped peaks" loading="lazy">
+            </div>
+
+            <div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_3998.JPG" alt="Powerful cascading waterfall cutting through rocky terrain" loading="lazy">
+            </div>
+
+            <div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_6461.JPG" alt="Dark creek cutting through heavy snow and evergreen trees" loading="lazy">
+            </div>
+
+            <div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_4123.JPG" alt="Massive waterfall plunging over a sheer cliff face" loading="lazy">
+            </div>
+
+            <div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_5724.JPG" alt="Clear mountain lake showing submerged logs beneath steep snowy cliffs" loading="lazy">
+            </div>
+
+            <div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_5843.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
+            </div>
+
+	<div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_3879.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
+            </div>
+
+<div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_4892.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
+            </div>
+
+<div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_4248.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
+            </div>
+
+<div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_1234.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
+            </div>
+
+<div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_6938.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
+            </div>
+
+<div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_6918.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
+            </div>
+
+<div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_6666.jpg" alt="Photography capture by Yogesh" loading="lazy">
+            </div>
+
+<div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_6667.JPG" alt="Photography capture by Yogesh" loading="lazy">
+            </div>
+
+<div class="masonry-item shadow-2xl shadow-black/50">
+                <img src="IMG_6668.JPG" alt="Photography capture by Yogesh" loading="lazy">
+            </div>
+</div>
+
+        </div>
+    </main>
+
+    <footer class="bg-black py-12 text-center border-t border-gray-900">
+        <p class="text-gray-500 text-sm">(c) 2026 Yogesh Muppiri. All photographs captured by me.</p>
+    </footer>
+
+</body>
+</html>

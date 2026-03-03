@@ -1,0 +1,88 @@
+{
+  "entries": [
+    {
+      "id": "summary",
+      "title": "Professional Summary",
+      "tags": ["about", "summary", "profile", "background"],
+      "content": "Yogesh Muppiri is a Software Development Engineer focused on secure, scalable backend systems and high-availability microservices. He bridges AI capabilities with enterprise infrastructure and has hands-on experience with Java, Spring Boot, AWS, and GenAI systems."
+    },
+    {
+      "id": "amazon_experience",
+      "title": "Current Role at Amazon",
+      "tags": ["amazon", "experience", "sde", "work", "impact"],
+      "content": "Software Development Engineer at Amazon, Seattle (July 2025 to present). Works on extreme-scale infrastructure supporting 100B+ memberships globally. Built high-throughput GenAI and backend pipelines for 27M+ product evaluations per second, managed 3M+ active selection rules, supported tier-1 services at 1M+ TPS with p99 latency near 150ms, and contributed to multi-region deployment across 6 global regions."
+    },
+    {
+      "id": "prior_experience",
+      "title": "Previous AI/ML Experience",
+      "tags": ["ai", "ml", "llm", "community dreams", "sageMaker"],
+      "content": "AI/ML Engineer at Community Dreams Foundation, Orlando (March 2024 to February 2025). Improved LLM contextual accuracy by about 30 percent using RAG on AWS SageMaker, increased candidate shortlisting accuracy by 35 percent using LLM-based screening, and reduced hiring assessment effort through automated model evaluation and analytics workflows."
+    },
+    {
+      "id": "skills",
+      "title": "Technical Skills",
+      "tags": ["skills", "tech stack", "tools", "languages"],
+      "content": "Languages: Java, Python, TypeScript, C++, SQL. Backend/Frontend: Spring Boot, React.js, Node.js, Microservices, REST APIs, GraphQL, Dagger, API Gateway, Redis, Concurrency. Cloud: AWS services including S3, VPC, RDS, DynamoDB, Lambda, ELB, IAM, CloudWatch. AI/ML: Hugging Face, Gemma 2, LLaMA 2, MLOps, predictive modeling."
+    },
+    {
+      "id": "projects_knowva",
+      "title": "Project - Knowva",
+      "tags": ["project", "knowva", "rag", "langchain", "streamlit"],
+      "content": "Knowva is an AI-powered document intelligence and medical Q&A application. It uses RAG, FAISS indexing, and LangChain pipelines to process documents (such as PDF and DOCX), reducing manual review time by up to 80 percent. It includes a Streamlit interface and integrates scalable inference APIs."
+    },
+    {
+      "id": "linkedin_public_highlights",
+      "title": "Public LinkedIn Highlights",
+      "tags": ["linkedin", "highlights", "genai", "production"],
+      "content": "Public LinkedIn content highlights that Yogesh built production-facing GenAI workflows with multilingual voice support, hybrid model routing (OpenAI GPT-4 and Llama 3), dynamic text extraction from files, and robust fallback/error handling patterns for real-world reliability."
+    },
+    {
+      "id": "projects_walmart",
+      "title": "Project - Walmart Data Analysis",
+      "tags": ["project", "walmart", "data science", "machine learning"],
+      "content": "Academic project analyzing Walmart store sales drivers across holidays, fuel prices, weather, and unemployment signals. Built data cleaning and modeling pipelines with machine learning methods including Random Forest and Decision Trees to extract business insights."
+    },
+    {
+      "id": "ai_fundamentals_guide",
+      "title": "AI Fundamentals in 15 Minutes",
+      "tags": ["ai fundamentals", "llm", "rag", "prompt engineering", "teaching", "guide", "how ai works"],
+      "content": "Yogesh created a concise learning guide titled AI Fundamentals (just in 15 minutes) in his portfolio. It explains core concepts such as AI, ML, Deep Learning, Foundation Models, LLMs, training, embeddings, inference, RAG, prompt engineering, evaluation, and responsible AI in a practical and easy-to-understand format."
+    },
+    {
+      "id": "education",
+      "title": "Education",
+      "tags": ["education", "masters", "ut dallas"],
+      "content": "Master's background in Business Analytics and Artificial Intelligence, used to connect advanced AI concepts with real-world engineering and product impact."
+    },
+    {
+      "id": "certifications",
+      "title": "Certifications",
+      "tags": ["certifications", "aws", "azure", "ibm"],
+      "content": "Certifications include AWS Certified Cloud Practitioner, Microsoft Azure Administrator Associate, IBM Python for Data Science AI and Development, University of London Machine Learning for All, and University of Minnesota Software Development Processes and Methodologies."
+    },
+    {
+      "id": "publications",
+      "title": "Research Publications",
+      "tags": ["research", "publication", "cybersecurity", "diabetes"],
+      "content": "Published peer-reviewed work on cyber-attack detection using machine learning and diabetes prediction using ensemble methods in supervised learning."
+    },
+    {
+      "id": "leadership",
+      "title": "Leadership and Volunteering",
+      "tags": ["leadership", "volunteering", "community"],
+      "content": "Served as Event Coordinator at GUSAC, NSS member, Indian Red Cross Society member, Teaching Assistant at GITAM University, and Programming Officer at the Association for Information Systems, demonstrating leadership, service, and mentoring experience."
+    },
+    {
+      "id": "creative_pursuits",
+      "title": "Creative Pursuits - Photography",
+      "tags": ["hobby", "photography", "creative", "gallery", "pictures", "photos", "passion"],
+      "content": "Yogesh is also passionate about photography. In the portfolio, the Creative Pursuits section highlights this hobby: when he is not writing code or analyzing data, he captures moments through a lens. The photography gallery showcases images clicked by Yogesh."
+    },
+    {
+      "id": "contact",
+      "title": "Contact",
+      "tags": ["contact", "email", "linkedin"],
+      "content": "Contact email: maruthiyogesh2472@gmail.com. LinkedIn: https://www.linkedin.com/in/yogeshmuppiri/. Built a professional network of 3000+ LinkedIn connections and actively engages with engineering and AI communities."
+    }
+  ]
+}
