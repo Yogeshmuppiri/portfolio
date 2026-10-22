@@ -81,87 +81,18 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-4 pb-24">
-        <div class="masonry-grid">
-            
-            <div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_6524.JPG" alt="Snowy evergreen forest and lake wrapped in fog" loading="lazy">
-            </div>
-
-            <div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_4892.JPG" alt="Seattle Great Wheel on a cloudy day" loading="lazy">
-            </div>
-
-            <div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_5755.JPG" alt="Wooden boardwalk leading to a serene mountain lake" loading="lazy">
-            </div>
-
-            <div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_3833.JPG" alt="Clear mountain stream flowing through a lush green valley with snow-capped peaks" loading="lazy">
-            </div>
-
-            <div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_3998.JPG" alt="Powerful cascading waterfall cutting through rocky terrain" loading="lazy">
-            </div>
-
-            <div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_6461.JPG" alt="Dark creek cutting through heavy snow and evergreen trees" loading="lazy">
-            </div>
-
-            <div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_4123.JPG" alt="Massive waterfall plunging over a sheer cliff face" loading="lazy">
-            </div>
-
-            <div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_5724.JPG" alt="Clear mountain lake showing submerged logs beneath steep snowy cliffs" loading="lazy">
-            </div>
-
-            <div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_5843.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
-            </div>
-
-	<div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_3879.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
-            </div>
-
-<div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_4892.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
-            </div>
-
-<div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_4248.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
-            </div>
-
-<div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_1234.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
-            </div>
-
-<div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_6938.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
-            </div>
-
-<div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_6918.JPG" alt="Towering pine trees in the snow with an airplane contrail slicing through the sky" loading="lazy">
-            </div>
-
-<div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_6666.jpg" alt="Photography capture by Yogesh" loading="lazy">
-            </div>
-
-<div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_6667.JPG" alt="Photography capture by Yogesh" loading="lazy">
-            </div>
-
-<div class="masonry-item shadow-2xl shadow-black/50">
-                <img src="IMG_6668.JPG" alt="Photography capture by Yogesh" loading="lazy">
-            </div>
-</div>
-
+        <p id="gallery-status" role="status" aria-live="polite" class="text-center text-gray-400 mb-6">Loading photographs...</p>
+        <div class="text-center mb-6">
+            <button id="gallery-retry" type="button" hidden class="rounded-lg bg-blue-600 px-5 py-3 text-white hover:bg-blue-500">Try again</button>
         </div>
+        <div id="gallery" class="masonry-grid" aria-label="Photography gallery" aria-busy="true"></div>
+        <noscript><p class="text-center text-gray-400">Please enable JavaScript to view the photography gallery.</p></noscript>
     </main>
 
     <footer class="bg-black py-12 text-center border-t border-gray-900">
-        <p class="text-gray-500 text-sm">(c) 2026 Yogesh Muppiri. All photographs captured by me.</p>
+        <p class="text-gray-500 text-sm">(c) 2026 Yogesh Muppiri.</p>
     </footer>
 
+    <script src="photography.js" defer></script>
 </body>
 </html>

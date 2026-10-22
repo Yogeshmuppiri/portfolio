@@ -1,0 +1,33 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; background: #030712; color: #f3f4f6; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+[hidden] { display: none !important; }
+header { display: flex; justify-content: space-between; gap: 1rem; padding: 1.5rem max(1.25rem, calc((100vw - 1040px)/2)); border-bottom: 1px solid #1f2937; }
+a { color: #93c5fd; text-decoration: none; }
+a:hover { text-decoration: underline; }
+main { max-width: 1040px; margin: 4rem auto; padding: 0 1.25rem; }
+.eyebrow { color: #60a5fa; font-size: .75rem; letter-spacing: .18em; font-weight: 700; }
+h1 { font-size: clamp(2rem, 5vw, 3.3rem); letter-spacing: -.04em; margin: 1rem 0; }
+h2 { font-size: 1.2rem; }
+.intro, .muted, #file-help { color: #9ca3af; line-height: 1.6; }
+.panel { background: #111827; border: 1px solid #374151; border-radius: 1rem; padding: 1.5rem; }
+.login { max-width: 420px; }
+label { display: block; font-weight: 600; margin: .5rem 0; }
+input { width: 100%; padding: .85rem; color: #f9fafb; background: #030712; border: 1px solid #4b5563; border-radius: .5rem; font: inherit; margin-bottom: 1rem; }
+input[type=file] { margin-top: .5rem; }
+input::file-selector-button { padding: .6rem; border: 0; border-radius: .3rem; margin-right: .7rem; cursor: pointer; }
+button { background: #2563eb; color: white; border: 0; padding: .85rem 1.25rem; border-radius: .5rem; font: inherit; font-weight: 600; cursor: pointer; }
+button:hover { background: #1d4ed8; }
+button:disabled { opacity: .5; cursor: wait; }
+button.secondary { background: #1f2937; border: 1px solid #4b5563; }
+:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
+#status { min-height: 1.5rem; margin: 1.5rem 0; color: #bfdbfe; }
+.section-heading, .actions { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1.5rem 0; }
+.queue { display: grid; gap: 1rem; margin-top: 1rem; }
+.photo-card { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; }
+.photo-card img { width: 100%; max-height: 240px; object-fit: contain; border-radius: .5rem; background: #030712; }
+.filename { overflow-wrap: anywhere; margin-top: 0; }
+.result { color: #bfdbfe; }
+.result.error { color: #fca5a5; }
+.result.success { color: #86efac; }
+@media (max-width: 600px) { main { margin-top: 2rem; } .photo-card { grid-template-columns: 1fr; } .photo-card img { max-height: 220px; } .actions { align-items: flex-start; flex-direction: column; } }

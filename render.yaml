@@ -7,3 +7,13 @@ services:
     envVars:
       - key: GEMINI_API_KEY
         sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        value: bfj0lu5i
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: CLOUDINARY_GALLERY_TAG
+        value: portfolio-photography
+      - key: GALLERY_ADMIN_PASSWORD
+        sync: false

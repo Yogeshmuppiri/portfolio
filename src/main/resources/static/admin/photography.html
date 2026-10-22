@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Manage photography | Yogesh Muppiri</title>
+    <link rel="icon" href="/mylogo.png">
+    <link rel="stylesheet" href="photography.css">
+    <script src="photography.js" defer></script>
+</head>
+<body>
+    <header><a href="/index.html">Yogesh Muppiri</a><a href="/photography.html" target="_blank" rel="noopener">View gallery ↗</a></header>
+    <main>
+        <p class="eyebrow">PHOTOGRAPHY ADMIN</p>
+        <h1>Share a new perspective.</h1>
+        <p class="intro">Upload your photographs and publish them to your gallery.</p>
+        <p id="status" role="status" aria-live="polite">Checking your session...</p>
+        <section id="login-panel" hidden class="panel login">
+            <h2>Sign in</h2>
+            <form id="login-form">
+                <label for="username">Username</label>
+                <input id="username" name="username" value="admin" autocomplete="username" required>
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" required>
+                <button type="submit">Sign in</button>
+            </form>
+        </section>
+        <section id="upload-panel" hidden>
+            <div class="section-heading"><h2>Upload photographs</h2><button id="logout" type="button" class="secondary">Sign out</button></div>
+            <form id="upload-form">
+                <div class="panel picker">
+                    <label for="photos">Choose photos</label>
+                    <p id="file-help">JPEG, PNG or WebP · Up to 20 MB per photo · Select up to 20 at once</p>
+                    <input id="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-describedby="file-help">
+                    <p class="muted">Portrait and landscape photos keep their original proportions in the gallery.</p>
+                </div>
+                <div id="queue" class="queue"></div>
+                <div id="publish-actions" hidden class="actions">
+                    <button id="publish" type="submit">Upload &amp; publish</button>
+                    <p class="muted">Successful uploads appear in the public gallery automatically.</p>
+                </div>
+            </form>
+        </section>
+        <noscript>Please enable JavaScript to manage your photography gallery.</noscript>
+    </main>
+</body>
+</html>

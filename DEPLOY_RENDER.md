@@ -1,5 +1,7 @@
 # Deploy To Render
 
+Photography setup and Cloudinary environment variables: [CLOUDINARY_GALLERY.md](CLOUDINARY_GALLERY.md).
+
 ## 1) Push code to GitHub
 Make sure your latest code is pushed to a GitHub repository.
 
