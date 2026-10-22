@@ -6,6 +6,11 @@ Select photos, optionally add descriptions and choose display order, then click
 **Upload & publish**. Photos are automatically stored in Cloudinary and published
 to the existing gallery. You do not need to open Cloudinary for routine uploads.
 
+Each selected photo has **Remove from selection** so you can drop individual photos
+without losing the other selections or their descriptions. This only removes the
+local selection. After publishing, **Dismiss** clears a completed card without
+deleting its published photo.
+
 The admin page supports batches of up to 20 JPEG, PNG or WebP photos (20 MB each),
 previews, per-photo results and retrying failed uploads without resending successful
 ones. Duplicate files show "Already in gallery" and are skipped in subsequent retries.
@@ -87,8 +92,24 @@ uploads invalidate the server gallery cache so opening or refreshing the gallery
 fetches the updated list immediately. An already open gallery refreshes every five
 minutes. Original aspect ratios and the masonry layout are preserved.
 
-This admin page handles uploads; editing or removing previously published photos
-is not included. Those operations can still be performed in Cloudinary:
+## Delete published photos
+
+The admin page's **Manage gallery** section shows published Cloudinary photos.
+Click **Delete permanently** on a photo and confirm. The authenticated, CSRF-protected
+endpoint verifies the immutable asset ID belongs to this tagged, public image gallery.
+It removes backed-up versions (if any), verifies the backup removal, then destroys
+the original and derived images and requests CDN invalidation. Backup API failures
+leave the active photo available for retry; an ambiguous destroy result asks you to
+refresh before retrying. Backup-version checks consume additional Cloudinary Admin API
+quota. Photos from other projects or private delivery types cannot be deleted here.
+
+Successful deletion removes the photo from the server's cached gallery immediately,
+including its outage fallback. Existing browser pages update on refresh or their
+regular refresh cycle; CDN copies can take a few minutes to disappear. This cannot
+revoke copies already downloaded by visitors. The local seed files in this repository
+are not Cloudinary storage and remain unchanged. No real photos are deleted by tests.
+
+You can use Cloudinary directly for metadata edits and other operations:
 
 - Upload an image in Cloudinary Media Library using public (`upload`) delivery.
 - Add the tag `portfolio-photography` to publish it. Untagged images stay out of the gallery.
@@ -101,7 +122,7 @@ is not included. Those operations can still be performed in Cloudinary:
 The server caches listings for five minutes to conserve Cloudinary Admin API quota.
 Changes made directly in Cloudinary appear after that cache expires. An already open
 visible page refreshes every five minutes, so direct Cloudinary edits may take up to
-roughly ten minutes to catch up. Admin-page uploads invalidate the cache immediately.
+roughly ten minutes to catch up. Admin-page uploads and deletions invalidate the cache immediately.
 Image delivery uses automatic format/quality and a maximum width of 1600 pixels.
 
 With all three credentials absent, the app serves the original gallery from

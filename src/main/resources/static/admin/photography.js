@@ -8,6 +8,86 @@
     let session;
     let entries = [];
     let busy = false;
+    let galleryRequest = 0;
+
+    function setWorking(value) {
+        busy = value;
+        uploadPanel.querySelectorAll('button, input').forEach(control => control.disabled = value);
+        entries.forEach(entry => {
+            entry.alt.disabled = value || entry.published || entry.duplicate;
+            entry.order.disabled = value || entry.published || entry.duplicate;
+            entry.remove.textContent = entry.published || entry.duplicate ? 'Dismiss' : 'Remove from selection';
+        });
+        const finished = entries.length && entries.every(entry => entry.published || entry.duplicate);
+        byId('publish').disabled = value || !entries.length || finished;
+        byId('publish').textContent = finished ? 'Finished' : 'Upload & publish';
+        byId('publish-actions').hidden = !entries.length;
+    }
+
+    async function loadPublished() {
+        const request = ++galleryRequest;
+        const message = byId('gallery-status');
+        const container = byId('published-photos');
+        message.textContent = 'Loading published photos...';
+        try {
+            const response = await fetch('/api/admin/photos', { cache: 'no-store' });
+            const photos = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(photos.message || 'Could not load photos. Sign in again or refresh the list.');
+            if (!Array.isArray(photos)) throw new Error('Could not load published photos.');
+            if (request !== galleryRequest || !session.authenticated) return;
+            const fragment = document.createDocumentFragment();
+            for (const photo of photos) {
+                const card = document.createElement('article');
+                card.className = 'panel published-card';
+                const image = document.createElement('img');
+                image.src = photo.url;
+                image.alt = photo.alt;
+                image.loading = 'lazy';
+                const description = document.createElement('p');
+                description.textContent = photo.alt;
+                const result = document.createElement('p');
+                result.setAttribute('role', 'status');
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'danger';
+                button.textContent = 'Delete permanently';
+                button.disabled = busy;
+                button.addEventListener('click', async () => {
+                    if (busy || !window.confirm(`Permanently delete this photo from the gallery and storage?\n\n${photo.alt}\n\nThis cannot be undone.`)) return;
+                    setWorking(true);
+                    result.textContent = 'Deleting photo and stored copies...';
+                    try {
+                        await checkSession();
+                        if (!session.authenticated) throw new Error('Your session expired. Sign in again.');
+                        const response = await fetch('/api/admin/photos/' + encodeURIComponent(photo.assetId), { method: 'DELETE', headers: headers() });
+                        const data = await response.json().catch(() => ({}));
+                        if (!response.ok) throw new Error(data.message || 'Deletion failed. Refresh the list before retrying.');
+                        // A matching completed upload can now be selected and uploaded again.
+                        entries.filter(entry => entry.publicId === photo.id).forEach(entry => {
+                            entry.published = false;
+                            entry.duplicate = false;
+                            entry.result.textContent = 'Deleted from gallery. You can publish this photo again.';
+                            entry.result.className = 'result';
+                        });
+                        card.remove();
+                        status.textContent = data.message;
+                        await loadPublished();
+                    } catch (error) {
+                        result.textContent = error.message;
+                        result.className = 'result error';
+                    } finally { setWorking(false); }
+                });
+                card.append(image, description, button, result);
+                fragment.append(card);
+            }
+            container.replaceChildren(fragment);
+            message.textContent = photos.length ? `${photos.length} published photos` : 'No published photos yet.';
+        } catch (error) {
+            if (request === galleryRequest) message.textContent = error.message;
+        }
+    }
+
+    byId('refresh-gallery').addEventListener('click', () => { if (!busy) loadPublished(); });
 
     async function checkSession() {
         const response = await fetch('/api/admin/session', { cache: 'no-store' });
@@ -15,6 +95,10 @@
         session = await response.json();
         loginPanel.hidden = session.authenticated;
         uploadPanel.hidden = !session.authenticated;
+        if (!session.authenticated) {
+            galleryRequest++;
+            byId('published-photos').replaceChildren();
+        }
     }
 
     function headers() { return { [session.csrfHeader]: session.csrfToken }; }
@@ -41,6 +125,7 @@
             if (!response.ok) throw new Error('Sign-in failed. Check your username and password.');
             await checkSession();
             status.textContent = 'Choose photos to publish.';
+            await loadPublished();
         } catch (error) { status.textContent = error.message; }
         finally { button.disabled = false; }
     });
@@ -103,10 +188,24 @@
             const result = document.createElement('p');
             result.className = 'result';
             result.setAttribute('role', 'status');
-            fields.append(name, label, alt, orderLabel, order, result);
+            const remove = document.createElement('button');
+            remove.type = 'button';
+            remove.className = 'secondary';
+            remove.textContent = 'Remove from selection';
+            const entry = { file, preview, alt, order, result, remove, published: false, duplicate: false };
+            remove.addEventListener('click', () => {
+                if (busy) return;
+                entries = entries.filter(item => item !== entry);
+                URL.revokeObjectURL(preview);
+                card.remove();
+                input.value = '';
+                setWorking(false);
+                status.textContent = entries.length ? `${entries.length} photos in your selection.` : 'Choose photos to publish.';
+            });
+            fields.append(name, label, alt, orderLabel, order, remove, result);
             card.append(image, fields);
             queue.append(card);
-            entries.push({ file, preview, alt, order, result, published: false, duplicate: false });
+            entries.push(entry);
         }
         byId('publish-actions').hidden = !entries.length;
         byId('publish').textContent = 'Upload & publish';
@@ -117,9 +216,7 @@
     byId('upload-form').addEventListener('submit', async event => {
         event.preventDefault();
         if (busy || !entries.length) return;
-        busy = true;
-        const controls = [input, byId('publish'), byId('logout'), ...entries.flatMap(entry => [entry.alt, entry.order])];
-        controls.forEach(control => control.disabled = true);
+        setWorking(true);
         try {
             await checkSession();
             if (!session.authenticated) throw new Error('Your session expired. Sign in again to continue.');
@@ -146,6 +243,7 @@
                     }
                     if (!response.ok) throw new Error(result.message || 'Upload failed. Check the file size and try again.');
                     entry.published = true;
+                    entry.publicId = result.id;
                     entry.result.className = 'result success';
                     entry.result.textContent = 'Published to your gallery.';
                 } catch (error) {
@@ -159,14 +257,10 @@
             status.textContent = `${count} of ${entries.length} photos published.`
                 + (duplicates ? ` ${duplicates} already in gallery; skipped.` : '')
                 + (count ? ' Open or refresh the gallery to see them.' : '');
+            await loadPublished();
         } catch (error) { status.textContent = error.message; }
         finally {
-            busy = false;
-            controls.forEach(control => control.disabled = false);
-            entries.filter(entry => entry.published || entry.duplicate).forEach(entry => { entry.alt.disabled = true; entry.order.disabled = true; });
-            const finished = entries.every(entry => entry.published || entry.duplicate);
-            byId('publish').disabled = finished;
-            byId('publish').textContent = finished ? 'Finished' : 'Retry unpublished photos';
+            setWorking(false);
         }
     });
 
@@ -175,5 +269,6 @@
     });
     checkSession().then(() => {
         status.textContent = session.authenticated ? 'Choose photos to publish.' : 'Sign in to manage your gallery.';
+        if (session.authenticated) loadPublished();
     }).catch(error => { status.textContent = error.message; });
 })();

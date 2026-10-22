@@ -1,6 +1,7 @@
 package com.portfolio.controller;
 
 import com.portfolio.service.GalleryUploadService;
+import com.portfolio.service.GalleryManagementService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -12,7 +13,38 @@ import java.util.Map;
 @RequestMapping("/api/admin")
 public class GalleryAdminController {
     private final GalleryUploadService uploads;
-    public GalleryAdminController(GalleryUploadService uploads) { this.uploads = uploads; }
+    private final GalleryManagementService management;
+    public GalleryAdminController(GalleryUploadService uploads, GalleryManagementService management) {
+        this.uploads = uploads;
+        this.management = management;
+    }
+
+    @GetMapping("/photos")
+    public ResponseEntity<?> photos() {
+        try {
+            return ResponseEntity.ok().cacheControl(org.springframework.http.CacheControl.noStore()).body(management.photos());
+        } catch (IllegalStateException ex) {
+            return ResponseEntity.status(503).body(Map.of("message", ex.getMessage()));
+        } catch (Exception ex) {
+            return ResponseEntity.status(502).body(Map.of("message", "Could not load published photos. Please try again."));
+        }
+    }
+
+    @DeleteMapping("/photos/{assetId}")
+    public ResponseEntity<?> delete(@PathVariable String assetId) {
+        try {
+            management.delete(assetId);
+            return ResponseEntity.ok(Map.of("message", "Photo deleted from the gallery and storage. Cached copies may take a few minutes to clear."));
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.badRequest().body(Map.of("message", ex.getMessage()));
+        } catch (IllegalStateException ex) {
+            return ResponseEntity.status(503).body(Map.of("message", ex.getMessage()));
+        } catch (org.springframework.web.client.HttpClientErrorException.NotFound ex) {
+            return ResponseEntity.status(404).body(Map.of("message", "Photo not found. Refresh the gallery list."));
+        } catch (Exception ex) {
+            return ResponseEntity.status(502).body(Map.of("message", "Deletion could not be confirmed. Refresh the list before retrying."));
+        }
+    }
 
     @GetMapping("/session")
     public Map<String, Object> session(Authentication authentication, CsrfToken csrf) {

@@ -41,6 +41,15 @@
                     <p class="muted">Successful uploads appear in the public gallery automatically.</p>
                 </div>
             </form>
+            <section class="manage-gallery" aria-labelledby="manage-heading">
+                <div class="section-heading">
+                    <h2 id="manage-heading">Manage gallery</h2>
+                    <button id="refresh-gallery" type="button" class="secondary">Refresh photos</button>
+                </div>
+                <p class="muted">Delete published photos from your gallery and storage. Permanent deletion cannot be undone.</p>
+                <p id="gallery-status" role="status" aria-live="polite"></p>
+                <div id="published-photos" class="published-grid"></div>
+            </section>
         </section>
         <noscript>Please enable JavaScript to manage your photography gallery.</noscript>
     </main>

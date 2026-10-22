@@ -2,6 +2,7 @@ package com.portfolio.controller;
 
 import com.portfolio.config.GallerySecurityConfig;
 import com.portfolio.service.GalleryUploadService;
+import com.portfolio.service.GalleryManagementService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -23,7 +24,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class GalleryAdminSecurityTest {
     @Autowired MockMvc mvc;
     @MockBean GalleryUploadService uploads;
+    @MockBean GalleryManagementService management;
     private final MockMultipartFile image = new MockMultipartFile("file", "photo.jpg", "image/jpeg", new byte[]{1, 2});
+
+    @Test void galleryManagementRequiresLoginAndCsrf() throws Exception {
+        mvc.perform(get("/api/admin/photos")).andExpect(status().isUnauthorized());
+        mvc.perform(delete("/api/admin/photos/asset1").with(csrf())).andExpect(status().isUnauthorized());
+        mvc.perform(delete("/api/admin/photos/asset1").with(user("admin").roles("GALLERY_ADMIN")))
+            .andExpect(status().isForbidden());
+        verifyNoInteractions(management);
+        mvc.perform(delete("/api/admin/photos/asset1").with(user("admin").roles("GALLERY_ADMIN")).with(csrf()))
+            .andExpect(status().isOk());
+        verify(management).delete("asset1");
+    }
 
     @Test void anonymousVisitorsCannotUpload() throws Exception {
         mvc.perform(multipart("/api/admin/photos").file(image).param("alt", "Lake").with(csrf()))

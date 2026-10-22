@@ -92,6 +92,11 @@ public class GalleryService {
         refreshAt = Instant.MIN;
     }
 
+    public synchronized void remove(String id) {
+        if (cached != null) cached = cached.stream().filter(photo -> !photo.id().equals(id)).toList();
+        refreshAt = Instant.MIN;
+    }
+
     private List<Photo> cachedOrThrow(Instant now) {
         if (cached != null && now.isBefore(lastSuccess.plusSeconds(3600))) return cached;
         throw new IllegalStateException("Gallery is temporarily unavailable");

@@ -68,6 +68,17 @@ class GalleryServiceTest {
         assertThatThrownBy(partial::photos).isInstanceOf(IllegalStateException.class);
     }
 
+    @Test void deletedPhotoDoesNotReappearFromStaleCacheDuringOutage() {
+        server.expect(requestTo(URL)).andRespond(withSuccess("""
+            {"resources":[{"public_id":"lake","version":1,"resource_type":"image","type":"upload"}]}
+            """, MediaType.APPLICATION_JSON));
+        server.expect(requestTo(URL)).andRespond(withServerError());
+        assertThat(service.photos()).hasSize(1);
+        service.remove("lake");
+        assertThat(service.photos()).isEmpty();
+        server.verify();
+    }
+
     @Test void malformedResponseDoesNotBecomeAnEmptyGallery() {
         server.expect(requestTo(URL)).andRespond(withSuccess("{}", MediaType.APPLICATION_JSON));
         assertThatThrownBy(service::photos).isInstanceOf(IllegalStateException.class);
