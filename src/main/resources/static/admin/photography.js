@@ -106,7 +106,7 @@
             fields.append(name, label, alt, orderLabel, order, result);
             card.append(image, fields);
             queue.append(card);
-            entries.push({ file, preview, alt, order, result, published: false });
+            entries.push({ file, preview, alt, order, result, published: false, duplicate: false });
         }
         byId('publish-actions').hidden = !entries.length;
         byId('publish').textContent = 'Upload & publish';
@@ -123,7 +123,7 @@
         try {
             await checkSession();
             if (!session.authenticated) throw new Error('Your session expired. Sign in again to continue.');
-            for (const entry of entries.filter(item => !item.published)) {
+            for (const entry of entries.filter(item => !item.published && !item.duplicate)) {
                 entry.result.className = 'result';
                 entry.result.textContent = 'Uploading...';
                 const body = new FormData();
@@ -138,6 +138,12 @@
                         throw new Error('Your session expired. Sign in again to continue.');
                     }
                     const result = await response.json().catch(() => ({}));
+                    if (response.status === 409 && result.code === 'ALREADY_IN_GALLERY') {
+                        entry.duplicate = true;
+                        entry.result.className = 'result';
+                        entry.result.textContent = result.message;
+                        continue;
+                    }
                     if (!response.ok) throw new Error(result.message || 'Upload failed. Check the file size and try again.');
                     entry.published = true;
                     entry.result.className = 'result success';
@@ -149,14 +155,18 @@
                 }
             }
             const count = entries.filter(entry => entry.published).length;
-            status.textContent = `${count} of ${entries.length} photos published. Open or refresh the gallery to see them.`;
+            const duplicates = entries.filter(entry => entry.duplicate).length;
+            status.textContent = `${count} of ${entries.length} photos published.`
+                + (duplicates ? ` ${duplicates} already in gallery; skipped.` : '')
+                + (count ? ' Open or refresh the gallery to see them.' : '');
         } catch (error) { status.textContent = error.message; }
         finally {
             busy = false;
             controls.forEach(control => control.disabled = false);
-            entries.filter(entry => entry.published).forEach(entry => { entry.alt.disabled = true; entry.order.disabled = true; });
-            byId('publish').disabled = entries.every(entry => entry.published);
-            byId('publish').textContent = 'Retry unpublished photos';
+            entries.filter(entry => entry.published || entry.duplicate).forEach(entry => { entry.alt.disabled = true; entry.order.disabled = true; });
+            const finished = entries.every(entry => entry.published || entry.duplicate);
+            byId('publish').disabled = finished;
+            byId('publish').textContent = finished ? 'Finished' : 'Retry unpublished photos';
         }
     });
 

@@ -51,6 +51,14 @@ class GalleryAdminSecurityTest {
         mvc.perform(get("/api/admin/session")).andExpect(jsonPath("$.authenticated").value(false));
     }
 
+    @Test void duplicateUploadReturnsConflictMessage() throws Exception {
+        when(uploads.upload(any(), anyString(), any())).thenThrow(new GalleryUploadService.DuplicatePhotoException());
+        mvc.perform(multipart("/api/admin/photos").file(image)
+            .with(user("admin").roles("GALLERY_ADMIN")).with(csrf()))
+            .andExpect(status().isConflict()).andExpect(jsonPath("$.code").value("ALREADY_IN_GALLERY"))
+            .andExpect(jsonPath("$.message").value("Already in gallery. This photo has already been uploaded."));
+    }
+
     @Test void loginRequiresCsrfAndProviderErrorsAreNotExposed() throws Exception {
         mvc.perform(post("/api/admin/login").param("username", "admin").param("password", "test-password-for-gallery"))
             .andExpect(status().isForbidden());

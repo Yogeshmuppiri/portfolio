@@ -9,13 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.time.Instant;
 import java.util.HexFormat;
 import java.util.TreeMap;
-import java.util.UUID;
+import java.util.HashSet;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +25,11 @@ public class GalleryUploadService {
     private final String cloud, key, secret, tag;
     private final RestClient client;
     private final GalleryService gallery;
+    private final ConcurrentHashMap<String, String> legacyChecksums = new ConcurrentHashMap<>();
+
+    public static class DuplicatePhotoException extends RuntimeException {
+        public DuplicatePhotoException() { super("Already in gallery. This photo has already been uploaded."); }
+    }
 
     @org.springframework.beans.factory.annotation.Autowired
     public GalleryUploadService(@Value("${CLOUDINARY_CLOUD_NAME:}") String cloud,
@@ -58,7 +65,8 @@ public class GalleryUploadService {
         if (alt.isEmpty()) alt = "Photography by Yogesh Muppiri";
         byte[] bytes = file.getBytes();
         String extension = imageExtension(bytes);
-        String publicId = "portfolio/photography/" + UUID.randomUUID();
+        String publicId = "portfolio/photography/sha256_" + digest("SHA-256", bytes);
+        rejectExistingPhoto(publicId, digest("MD5", bytes));
         var params = new TreeMap<String, String>();
         params.put("public_id", publicId);
         params.put("timestamp", Long.toString(Instant.now().getEpochSecond()));
@@ -88,8 +96,70 @@ public class GalleryUploadService {
         if (result == null || !publicId.equals(result.path("public_id").asText())) {
             throw new IllegalStateException("Upload could not be confirmed. Check the gallery before retrying.");
         }
+        if (result.path("existing").asBoolean(false)) throw new DuplicatePhotoException();
         gallery.invalidate();
         return publicId;
+    }
+
+    private static String digest(String algorithm, byte[] bytes) {
+        try {
+            return HexFormat.of().formatHex(MessageDigest.getInstance(algorithm).digest(bytes));
+        } catch (java.security.NoSuchAlgorithmException ex) {
+            throw new IllegalStateException("Image fingerprinting unavailable.");
+        }
+    }
+
+    // Query fresh publication state, not the public gallery's five-minute display cache.
+    // Older uploads used random IDs; their Cloudinary ETag is the original file's MD5.
+    private void rejectExistingPhoto(String publicId, String md5) {
+        String cursor = "";
+        var cursors = new HashSet<String>();
+        do {
+            var uri = UriComponentsBuilder.fromHttpUrl("https://api.cloudinary.com")
+                .pathSegment("v1_1", cloud, "resources", "image", "tags", tag)
+                .queryParam("max_results", 500);
+            if (!cursor.isEmpty()) uri.queryParam("next_cursor", cursor);
+            JsonNode body = client.get().uri(uri.build().encode().toUri())
+                .headers(headers -> headers.setBasicAuth(key, secret)).retrieve().body(JsonNode.class);
+            if (body == null || !body.path("resources").isArray()) {
+                throw new IllegalStateException("Could not check for duplicate photos. Please try again.");
+            }
+            for (JsonNode resource : body.path("resources")) {
+                if (!"upload".equals(resource.path("type").asText())
+                    || !"image".equals(resource.path("resource_type").asText())) continue;
+                String id = resource.path("public_id").asText();
+                if (publicId.equals(id)) throw new DuplicatePhotoException();
+                if (id.matches("portfolio/photography/sha256_[a-f0-9]{64}")) continue;
+                String etag = resource.path("etag").asText("");
+                if (etag.isEmpty()) etag = legacyChecksum(resource);
+                if (md5.equalsIgnoreCase(etag)) throw new DuplicatePhotoException();
+            }
+            cursor = body.path("next_cursor").asText("");
+            if (!cursor.isEmpty() && (!cursors.add(cursor) || cursors.size() > 100)) {
+                throw new IllegalStateException("Could not finish checking for duplicate photos. Please try again.");
+            }
+        } while (!cursor.isEmpty());
+    }
+
+    private String legacyChecksum(JsonNode resource) {
+        String assetId = resource.path("asset_id").asText();
+        long version = resource.path("version").asLong();
+        if (assetId.isBlank() || version <= 0) {
+            throw new IllegalStateException("Could not check an existing photo for duplicates. Please try again.");
+        }
+        String cacheKey = assetId + ":" + version;
+        String cached = legacyChecksums.get(cacheKey);
+        if (cached != null) return cached;
+        var uri = UriComponentsBuilder.fromHttpUrl("https://api.cloudinary.com")
+            .pathSegment("v1_1", cloud, "resources", assetId).queryParam("media_metadata", true)
+            .build().encode().toUri();
+        JsonNode details = client.get().uri(uri).headers(headers -> headers.setBasicAuth(key, secret))
+            .retrieve().body(JsonNode.class);
+        String etag = details == null ? "" : details.path("etag").asText("");
+        if (etag.isBlank()) throw new IllegalStateException("Could not check an existing photo for duplicates. Please try again.");
+        if (legacyChecksums.size() >= 10000) legacyChecksums.clear();
+        legacyChecksums.put(cacheKey, etag);
+        return etag;
     }
 
     static String imageExtension(byte[] bytes) {

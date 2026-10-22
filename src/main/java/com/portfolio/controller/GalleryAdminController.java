@@ -27,6 +27,8 @@ public class GalleryAdminController {
                                     @RequestParam(value = "order", required = false) Integer order) {
         try {
             return ResponseEntity.status(201).body(Map.of("id", uploads.upload(file, alt, order), "message", "Photo published."));
+        } catch (GalleryUploadService.DuplicatePhotoException ex) {
+            return ResponseEntity.status(409).body(Map.of("code", "ALREADY_IN_GALLERY", "message", ex.getMessage()));
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.badRequest().body(Map.of("message", ex.getMessage()));
         } catch (IllegalStateException ex) {

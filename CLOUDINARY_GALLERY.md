@@ -8,7 +8,17 @@ to the existing gallery. You do not need to open Cloudinary for routine uploads.
 
 The admin page supports batches of up to 20 JPEG, PNG or WebP photos (20 MB each),
 previews, per-photo results and retrying failed uploads without resending successful
-ones. Convert HEIC files to JPEG before uploading. Cloudinary account limits may
+ones. Duplicate files show "Already in gallery" and are skipped in subsequent retries.
+Duplicate detection compares exact file contents, even if the filename or description
+changes. Re-encoded, resized or otherwise modified files count as different files.
+New uploads use a SHA-256-based public ID with overwriting disabled, so simultaneous
+uploads cannot create multiple copies. Existing tagged public photos are checked
+using Cloudinary's original-file checksum, including photos uploaded before this change.
+Legacy checksum lookups are cached per asset version; the initial check may take longer.
+If duplicate checking is unavailable, the upload fails without storing another copy.
+This does not remove any duplicates already stored in the gallery.
+
+Convert HEIC files to JPEG before uploading. Cloudinary account limits may
 be lower than the site's 20 MB limit. An ambiguous network failure can mean a photo
 was uploaded despite the missing response; check the gallery before retrying it.
 
