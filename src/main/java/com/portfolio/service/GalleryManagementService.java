@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestClientException;
@@ -127,12 +126,18 @@ public class GalleryManagementService {
                 .digest(signatureInput.getBytes(StandardCharsets.UTF_8))));
         } catch (java.security.NoSuchAlgorithmException ex) { throw new IllegalStateException("Deletion signing unavailable."); }
         params.put("api_key", key);
-        var form = new LinkedMultiValueMap<String, String>();
-        params.forEach(form::add);
+        // Asset-ID deletion uses the asset-management endpoint and JSON body.
+        // /image/destroy is the public-ID operation, not this API contract.
+        Map<String, Object> payload = Map.of(
+            "asset_id", assetId,
+            "invalidate", true,
+            "timestamp", Long.parseLong(params.get("timestamp")),
+            "signature", params.get("signature"),
+            "api_key", key);
         try {
             JsonNode result = deletionCall("removing the stored photo", () -> client.post()
-                .uri(api("image", "destroy").build().encode().toUri())
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED).body(form).retrieve().body(JsonNode.class));
+                .uri(api("asset", "destroy").build().encode().toUri())
+                .contentType(MediaType.APPLICATION_JSON).body(payload).retrieve().body(JsonNode.class));
             if (result == null || !Set.of("ok", "not found").contains(result.path("result").asText())) {
                 throw new IllegalStateException("Deletion could not be confirmed. Refresh the list before retrying.");
             }

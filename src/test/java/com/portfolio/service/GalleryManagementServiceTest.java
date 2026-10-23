@@ -30,11 +30,21 @@ class GalleryManagementServiceTest {
     }
 
     private void expectDestroy(String response) {
-        server.expect(requestTo(API + "image/destroy")).andExpect(method(HttpMethod.POST))
-            .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_FORM_URLENCODED))
-            .andExpect(content().string(org.hamcrest.Matchers.containsString("asset_id=asset1")))
-            .andExpect(content().string(org.hamcrest.Matchers.containsString("invalidate=true")))
-            .andExpect(content().string(org.hamcrest.Matchers.containsString("signature=")))
+        // Match Cloudinary's official assetsDestroyByAssetId SDK contract.
+        server.expect(requestTo(API + "asset/destroy")).andExpect(method(HttpMethod.POST))
+            .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+            .andExpect(content().json("{\"asset_id\":\"asset1\",\"invalidate\":true,\"api_key\":\"key\"}"))
+            .andExpect(request -> {
+                String body = ((org.springframework.mock.http.client.MockClientHttpRequest) request).getBodyAsString();
+                var payload = new com.fasterxml.jackson.databind.ObjectMapper().readTree(body);
+                assertThat(payload.path("timestamp").isIntegralNumber()).isTrue();
+                String signed = "asset_id=asset1&invalidate=true&timestamp=" + payload.path("timestamp").asLong() + "secret";
+                try {
+                    String expected = java.util.HexFormat.of().formatHex(java.security.MessageDigest.getInstance("SHA-1")
+                        .digest(signed.getBytes(java.nio.charset.StandardCharsets.UTF_8)));
+                    assertThat(payload.path("signature").asText()).isEqualTo(expected);
+                } catch (java.security.NoSuchAlgorithmException ex) { throw new AssertionError(ex); }
+            })
             .andRespond(withSuccess(response, MediaType.APPLICATION_JSON));
     }
 
