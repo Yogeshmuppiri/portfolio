@@ -97,11 +97,15 @@ minutes. Original aspect ratios and the masonry layout are preserved.
 The admin page's **Manage gallery** section shows published Cloudinary photos.
 Click **Delete permanently** on a photo and confirm. The authenticated, CSRF-protected
 endpoint verifies the immutable asset ID belongs to this tagged, public image gallery.
-It removes backed-up versions (if any), verifies the backup removal, then destroys
+It removes restorable backed-up versions (if any), ignores non-restorable version
+history entries, verifies the backup removal, then destroys
 the original and derived images and requests CDN invalidation. Backup API failures
 leave the active photo available for retry; an ambiguous destroy result asks you to
 refresh before retrying. Backup-version checks consume additional Cloudinary Admin API
 quota. Photos from other projects or private delivery types cannot be deleted here.
+If Cloudinary rejects a request, the admin page now identifies the failing step and
+HTTP status, with guidance for credentials/permissions or API quota errors. Render
+logs include the same step/status without exposing credentials or provider response bodies.
 
 Successful deletion removes the photo from the server's cached gallery immediately,
 including its outage fallback. Existing browser pages update on refresh or their

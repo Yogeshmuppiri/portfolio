@@ -71,7 +71,8 @@ class GalleryManagementServiceTest {
     @Test void backupFailureLeavesActiveImageForRetry() {
         expectDetails(photo("[\"portfolio-photography\"]", "[{\"version_id\":\"backup1\"}]"));
         server.expect(method(HttpMethod.DELETE)).andRespond(withServerError());
-        assertThatThrownBy(() -> management.delete("asset1")).isInstanceOf(org.springframework.web.client.RestClientException.class);
+        assertThatThrownBy(() -> management.delete("asset1")).isInstanceOf(IllegalStateException.class)
+            .hasMessageContaining("removing backed-up versions (HTTP 500)");
         verifyNoInteractions(gallery);
         server.verify();
     }
@@ -82,6 +83,42 @@ class GalleryManagementServiceTest {
         assertThatThrownBy(() -> management.delete("asset1")).isInstanceOf(IllegalStateException.class);
         verify(gallery, never()).remove(anyString());
         verify(gallery).invalidate();
+        server.verify();
+    }
+
+    @Test void nonRestorableVersionDoesNotTriggerBackupDeletion() {
+        expectDetails(photo("[\"portfolio-photography\"]", "[{\"version_id\":\"current-version\",\"restorable\":false}]"));
+        expectDestroy("{\"result\":\"ok\"}");
+        management.delete("asset1");
+        verify(gallery).remove("portfolio/photography/one");
+        server.verify();
+    }
+
+    @Test void mixedVersionHistoryOnlyPurgesRestorableBackups() {
+        expectDetails(photo("[\"portfolio-photography\"]", """
+            [{"version_id":"backup1","restorable":true},{"version_id":"current","restorable":false}]
+            """));
+        server.expect(request -> {
+            assertThat(request.getMethod()).isEqualTo(HttpMethod.DELETE);
+            assertThat(request.getURI().getQuery()).isEqualTo("version_ids[]=backup1");
+        }).andRespond(withSuccess("{}", MediaType.APPLICATION_JSON));
+        expectDetails(photo("[\"portfolio-photography\"]", "[{\"version_id\":\"current\",\"restorable\":false}]"));
+        expectDestroy("{\"result\":\"ok\"}");
+        management.delete("asset1");
+        verify(gallery).remove("portfolio/photography/one");
+        server.verify();
+    }
+
+    @Test void rateLimitIdentifiesFailingStepWithoutExposingProviderBody() {
+        server.expect(requestTo(API + "resources/asset1?versions=true"))
+            .andRespond(withStatus(org.springframework.http.HttpStatus.TOO_MANY_REQUESTS)
+                .body("private provider credentials").contentType(MediaType.TEXT_PLAIN));
+        assertThatThrownBy(() -> management.delete("asset1"))
+            .isInstanceOf(IllegalStateException.class)
+            .hasMessageContaining("checking photo details (HTTP 429)")
+            .hasMessageContaining("quota")
+            .hasMessageNotContaining("private provider credentials");
+        verifyNoInteractions(gallery);
         server.verify();
     }
 

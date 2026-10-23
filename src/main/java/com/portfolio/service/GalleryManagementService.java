@@ -7,6 +7,8 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientResponseException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.util.UriUtils;
 import java.nio.charset.StandardCharsets;
@@ -14,6 +16,7 @@ import java.security.MessageDigest;
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.function.Supplier;
 
 @Service
 public class GalleryManagementService {
@@ -90,7 +93,7 @@ public class GalleryManagementService {
     public synchronized void delete(String assetId) {
         requireConfiguration();
         if (assetId == null || !assetId.matches("[a-zA-Z0-9_-]{1,128}")) throw new IllegalArgumentException("Invalid photo identifier.");
-        JsonNode photo = get(api("resources", assetId).queryParam("versions", true));
+        JsonNode photo = deletionCall("checking photo details", () -> get(api("resources", assetId).queryParam("versions", true)));
         boolean tagged = false;
         if (photo != null) for (JsonNode value : photo.path("tags")) tagged |= tag.equals(value.asText());
         if (photo == null || !assetId.equals(photo.path("asset_id").asText()) || !tagged
@@ -104,11 +107,11 @@ public class GalleryManagementService {
         for (int start = 0; start < versions.size(); start += 100) {
             var uri = api("resources", "backup", assetId)
                 .queryParam("version_ids[]", versions.subList(start, Math.min(start + 100, versions.size())).toArray());
-            client.delete().uri(uri.build().encode().toUri()).headers(headers -> headers.setBasicAuth(key, secret))
-                .retrieve().toBodilessEntity();
+            deletionCall("removing backed-up versions", () -> client.delete().uri(uri.build().encode().toUri())
+                .headers(headers -> headers.setBasicAuth(key, secret)).retrieve().toBodilessEntity());
         }
         if (!versions.isEmpty()) {
-            JsonNode verified = get(api("resources", assetId).queryParam("versions", true));
+            JsonNode verified = deletionCall("verifying backup removal", () -> get(api("resources", assetId).queryParam("versions", true)));
             if (verified == null || !assetId.equals(verified.path("asset_id").asText()) || !backupVersions(verified).isEmpty()) {
                 throw new IllegalStateException("Backup deletion could not be confirmed. Retry deletion to finish removing this photo.");
             }
@@ -127,8 +130,9 @@ public class GalleryManagementService {
         var form = new LinkedMultiValueMap<String, String>();
         params.forEach(form::add);
         try {
-            JsonNode result = client.post().uri(api("image", "destroy").build().encode().toUri())
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED).body(form).retrieve().body(JsonNode.class);
+            JsonNode result = deletionCall("removing the stored photo", () -> client.post()
+                .uri(api("image", "destroy").build().encode().toUri())
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED).body(form).retrieve().body(JsonNode.class));
             if (result == null || !Set.of("ok", "not found").contains(result.path("result").asText())) {
                 throw new IllegalStateException("Deletion could not be confirmed. Refresh the list before retrying.");
             }
@@ -147,10 +151,36 @@ public class GalleryManagementService {
         if (!versions.isMissingNode() && !versions.isArray()) throw new IllegalStateException("Could not verify photo backups.");
         var ids = new ArrayList<String>();
         for (JsonNode version : versions) {
+            // Cloudinary also lists non-restorable/current versions, which are not
+            // backup files. Sending those IDs to the backup deletion API can fail.
+            if (version.has("restorable") && !version.path("restorable").asBoolean()) continue;
             String id = version.path("version_id").asText();
             if (id.isBlank()) throw new IllegalStateException("Could not verify photo backups.");
             ids.add(id);
         }
         return ids;
+    }
+
+    private <T> T deletionCall(String step, Supplier<T> operation) {
+        try {
+            return operation.get();
+        } catch (RestClientResponseException ex) {
+            int status = ex.getStatusCode().value();
+            // Provider bodies can contain signed request details. Never log or expose them.
+            org.slf4j.LoggerFactory.getLogger(GalleryManagementService.class)
+                .warn("Cloudinary deletion failed while {} (HTTP {})", step, status);
+            String advice = switch (status) {
+                case 401, 403 -> "Check the Cloudinary API credentials and their permissions in Render.";
+                case 420, 429 -> "The Cloudinary API limit was reached. Wait for the quota to reset before retrying.";
+                case 404 -> "The photo or backup was not found. Refresh the gallery list.";
+                case 400 -> "Cloudinary rejected this step. Share this error message so the request can be checked.";
+                default -> "Cloudinary is temporarily unavailable. Refresh the list before retrying.";
+            };
+            throw new IllegalStateException("Cloudinary error while " + step + " (HTTP " + status + "). " + advice);
+        } catch (RestClientException ex) {
+            org.slf4j.LoggerFactory.getLogger(GalleryManagementService.class)
+                .warn("Cloudinary deletion failed while {} ({})", step, ex.getClass().getSimpleName());
+            throw new IllegalStateException("Could not contact Cloudinary while " + step + ". Refresh the list before retrying.");
+        }
     }
 }
